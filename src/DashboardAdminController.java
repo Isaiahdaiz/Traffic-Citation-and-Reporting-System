@@ -28,6 +28,9 @@ public class DashboardAdminController implements Initializable {
     private TableColumn<Citation, String> typeColumn;
 
     @FXML
+    private TableColumn<Citation, String> paymentStatusColumn;
+
+    @FXML
     private ComboBox<String> itemTypeComboBox;
 
     @FXML
@@ -83,6 +86,7 @@ public class DashboardAdminController implements Initializable {
         dateIssuedColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         issuedByColumn.setCellValueFactory(new PropertyValueFactory<>("officer"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+        paymentStatusColumn.setCellValueFactory(new PropertyValueFactory<>("paymentStatus"));
 
         try {
             // get all citations from the database
