@@ -1,3 +1,4 @@
+
 // Author: Isaiah Daiz
 import java.io.IOException;
 import java.net.URL;
@@ -44,14 +45,7 @@ public class DashboardAdminController implements Initializable {
 
     @FXML
     private void handleRefreshButton() throws SQLException {
-        // Clear current data in the table
-        citationTable.getItems().clear();
-
-        // Retrieve new data from the database
-        List<Citation> citations = Citation.getAllCitations();
-
-        // Populate the table with the new data
-        citationTable.getItems().addAll(citations);
+        refreshTable();
     }
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -59,7 +53,7 @@ public class DashboardAdminController implements Initializable {
         itemTypeComboBox.getItems().addAll("Citation", "Driver", "Vehicle");
         itemTypeComboBox.setOnAction(event -> {
             String selectedItemType = itemTypeComboBox.getValue();
-            if (selectedItemType != null) { 
+            if (selectedItemType != null) {
                 Load load = new Load();
                 switch (selectedItemType) {
                     case "Citation":
@@ -99,14 +93,21 @@ public class DashboardAdminController implements Initializable {
             citationTable.setOnMouseClicked((MouseEvent event) -> {
                 if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
                     Citation citation = citationTable.getSelectionModel().getSelectedItem();
-                    if (citation != null) {
-                        try {
-                            // open ModifyCitation screen for selected citation
-                            Load load = new Load();
-                            load.modifyCitation(citation.getCitationID());
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                    try {
+                        if (citation != null && citation.citationIdExists(citation.getCitationID())) {
+                            try {
+                                // open ModifyCitation screen for selected citation
+                                Load load = new Load();
+                                load.modifyCitation(citation.getCitationID());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            refreshTable();
                         }
+                    } catch (SQLException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
                     }
                 }
             });
@@ -115,4 +116,14 @@ public class DashboardAdminController implements Initializable {
         }
     }
 
+    private void refreshTable() throws SQLException {
+        // Clear current data in the table
+        citationTable.getItems().clear();
+
+        // Retrieve new data from the database
+        List<Citation> citations = Citation.getAllCitations();
+
+        // Populate the table with the new data
+        citationTable.getItems().addAll(citations);
+    }
 }

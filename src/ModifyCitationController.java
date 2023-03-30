@@ -1,3 +1,4 @@
+
 // Author: Isaiah Daiz
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -9,6 +10,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
+
 import java.sql.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
@@ -165,6 +168,10 @@ public class ModifyCitationController {
         if (result.get() == ButtonType.OK) {
             // User confirmed deletion, so delete the citation
             citation.deleteCitation();
+            // get a reference to the stage
+            Stage stage = (Stage) cancelButton.getScene().getWindow();
+            // close the stage
+            stage.close();
         } else {
             // User cancelled deletion
         }
@@ -314,7 +321,6 @@ public class ModifyCitationController {
         cancelButton.setVisible(editable);
         deleteButton.setVisible(editable);
     }
-    
 
     // Get Payment status selection
     private String getPaymentStatus() {
