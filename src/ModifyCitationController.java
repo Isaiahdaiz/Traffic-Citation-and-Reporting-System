@@ -1,11 +1,4 @@
-/* Filename: ModifyCitationController
- * Author: Isaiah Daiz
- * Created on: 03/29/2023
- * Description:
- * This class provides the interaction between Java and the JavaFX 
- * 
- */
-
+// Author: Isaiah Daiz
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;

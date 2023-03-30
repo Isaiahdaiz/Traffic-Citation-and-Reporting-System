@@ -1,11 +1,8 @@
+// Author: Isaiah Daiz
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.*;
 
@@ -62,7 +59,8 @@ public class SearchAllController {
                 Citation citation = Citation.searchCitation(citationIdInt);
                 if (citation != null) {
                     System.out.println("Citation found \n" + citation.toString());
-                    loadModifyCitation(citationIdInt);
+                    Load load = new Load();
+                    load.modifyCitation(citationIdInt);
                 } else
                     System.out.println("Citation " + citationIdInt + " Not Found");
             } catch (SQLException e) {
@@ -84,17 +82,4 @@ public class SearchAllController {
         // code to handle search by VIN
         String regex = "[0-9A-Z]{17}"; // 2T2K1E56A12345674
     }
-    
-    // Load Modify citaiton screen
-    private void loadModifyCitation(int citationID) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifyCitation.fxml"));
-        Parent root = loader.load();
-        ModifyCitationController controller = loader.getController();
-        controller.initialize(citationID);
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
-    
-
 }

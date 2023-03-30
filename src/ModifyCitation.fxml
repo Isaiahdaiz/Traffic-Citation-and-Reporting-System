@@ -260,12 +260,12 @@
                      </Button>
                      <StackPane>
                         <children>
-                           <Button fx:id="modifyButton" onAction="#handleModifyButton" prefWidth="100.0" style="-fx-background-color: #0a3bff;" text="Modify" textFill="WHITE">
+                           <Button fx:id="applyButton" onAction="#handleApplyButton" prefWidth="100.0" style="-fx-background-color: #0a3bff;" text="Apply" textFill="WHITE">
                               <font>
                                  <Font size="16.0" />
                               </font>
                            </Button>
-                           <Button fx:id="applyButton" onAction="#handleApplyButton" prefWidth="100.0" style="-fx-background-color: #0a3bff;" text="Apply" textFill="WHITE">
+                           <Button fx:id="modifyButton" onAction="#handleModifyButton" prefWidth="100.0" style="-fx-background-color: #0a3bff;" text="Modify" textFill="WHITE">
                               <font>
                                  <Font size="16.0" />
                               </font>

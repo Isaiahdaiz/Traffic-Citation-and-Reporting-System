@@ -1,15 +1,4 @@
-/*
- * This is a Java class named "Citation" that represents a traffic citation object.
- * It has private fields to store citation details like officer name, citation type,
- * driver license number, vehicle identification number, citation date, fine amount,
- * payment status, traffic school, and notes. It also has constructors, getters, and
- * setters for these fields.
- * 
- * The class has two methods. The first method, "save()", saves the citation to a MySQL 
- * database using JDBC. The second method, "getAllCitations()", retrieves all citations 
- * from the database and returns them as a List of Citation objects.
- */
-
+// Author: Isaiah Daiz
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -26,6 +15,11 @@ public class Citation {
     private String PaymentStatus;
     private String TrafficSchool;
     private String Notes;
+
+    // SQL Server and Credentials
+    private static String url = "jdbc:mysql://localhost:3306/project";
+    private static String username = "root";
+    private static String password = "SQL@dm1nms";
 
     // Constructors
     public Citation() {
@@ -138,10 +132,6 @@ public class Citation {
     // Methods
     // Save to an auto incrementing database
     public void save() throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/project";
-        String username = "root";
-        String password = "SQL@dm1nms";
-
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
             String insertCitationSql = "INSERT INTO citations (Officer, Type, DLNumber, VIN, Date, FineAmount, PaymentStatus, TrafficSchool, Notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(insertCitationSql);
@@ -161,10 +151,6 @@ public class Citation {
 
     // Update Citation
     public void updateCitation() throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/project";
-        String username = "root";
-        String password = "SQL@dm1nms";
-
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
             String updateCitationSql = "UPDATE citations SET Officer = ?, Type = ?, DLNumber = ?, VIN = ?, Date = ?, FineAmount = ?, PaymentStatus = ?, TrafficSchool = ?, Notes = ? WHERE CitationID = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(updateCitationSql);
@@ -185,10 +171,6 @@ public class Citation {
 
     // List all citations in the database
     public static List<Citation> getAllCitations() throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/project";
-        String username = "root";
-        String password = "SQL@dm1nms";
-
         List<Citation> citations = new ArrayList<>();
 
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
@@ -220,10 +202,6 @@ public class Citation {
 
     // Get next citaiton ID
     public static int getNextCitationID() {
-        String url = "jdbc:mysql://localhost:3306/project";
-        String username = "root";
-        String password = "SQL@dm1nms";
-
         int maxCitationID = 0;
 
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
@@ -250,10 +228,6 @@ public class Citation {
 
     // Search for a citation
     public static Citation searchCitation(int citationID) throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/project";
-        String username = "root";
-        String password = "SQL@dm1nms";
-
         Citation citation = null;
 
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
@@ -287,12 +261,9 @@ public class Citation {
 
         return citation;
     }
+
     // Check if citaion Id exists
     public static boolean citationIdExists(int citationId) throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/project";
-        String username = "root";
-        String password = "SQL@dm1nms";
-    
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
             String selectSql = "SELECT COUNT(*) FROM citations WHERE CitationID = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(selectSql);
@@ -303,14 +274,9 @@ public class Citation {
             return count > 0;
         }
     }
-    
 
     // Check if driver's license number exists (required when making updates)
     public static boolean dLNumberExists(String dlNumber) throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/project";
-        String username = "root";
-        String password = "SQL@dm1nms";
-
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
             String selectSql = "SELECT COUNT(*) FROM drivers WHERE DLNumber = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(selectSql);
@@ -324,10 +290,6 @@ public class Citation {
 
     // Check if VIN exists (required when making updates)
     public static boolean vinExists(String vin) throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/project";
-        String username = "root";
-        String password = "SQL@dm1nms";
-
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
             String query = "SELECT * FROM vehicles WHERE VIN = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -339,19 +301,14 @@ public class Citation {
 
     // Delete this citation
     public void deleteCitation() throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/project";
-        String username = "root";
-        String password = "SQL@dm1nms";
-        
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
             String deleteCitationSql = "DELETE FROM citations WHERE CitationID = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(deleteCitationSql);
             preparedStatement.setInt(1, this.CitationID);
-        
+
             preparedStatement.executeUpdate();
         }
     }
-    
 
     @Override
     public String toString() {
