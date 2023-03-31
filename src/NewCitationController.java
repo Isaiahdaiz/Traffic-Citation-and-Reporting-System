@@ -5,6 +5,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -80,7 +82,17 @@ public class NewCitationController {
             }
         });
         fineAmountTextArea.setText("0.00");
-        bookButton.setOnAction(event -> handleBookButton());
+        bookButton.setOnAction(event -> {
+            try {
+                handleBookButton();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        });
         submitButton.setOnAction(event -> {
             try {
                 handleSubmitButton();
@@ -92,8 +104,20 @@ public class NewCitationController {
     }
 
     @FXML
-    private void handleBookButton() {
-        // code to handle book button action
+    private void handleBookButton() throws IOException, SQLException {
+        driverLicenseNumberErrorLabel.setVisible(false);
+        driverLicenseNumberErrorLabel.setText("*Invalid Input");
+        if (driverLicenseNumberTextField.getText().isEmpty() || !driverLicenseNumberTextField.getText().matches("\\d{4}-\\d{4}-\\d{4}-\\d{4}")) {
+            driverLicenseNumberErrorLabel.setVisible(true);
+            return;
+        }
+        if (!Citation.dLNumberExists(driverLicenseNumberTextField.getText())) {
+            driverLicenseNumberErrorLabel.setText("*Driver does not exist");
+            driverLicenseNumberErrorLabel.setVisible(true);
+            return;
+        }
+        Load load = new Load();
+        load.trafficSchool(citation);
     }
 
     @FXML

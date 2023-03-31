@@ -5,13 +5,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("DashboardAdmin.fxml"));
         primaryStage.setTitle("Traffic Citation and Reporting System");
-        primaryStage.setScene(new Scene(root, 1080, 720));
+        primaryStage.setScene(new Scene(root, 720, 480));
         primaryStage.show();
     }
 

@@ -3,6 +3,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.sql.*;
 
@@ -59,8 +61,9 @@ public class SearchAllController {
                 Citation citation = Citation.searchCitation(citationIdInt);
                 if (citation != null) {
                     System.out.println("Citation found \n" + citation.toString());
-                    Load load = new Load();
-                    load.modifyCitation(citationIdInt);
+                    Load load = new Load(); // Get the current stage and pass it to the modifyCitation method
+                    Stage currentStage = (Stage) citationIDTextField.getScene().getWindow();
+                    load.modifyCitation(citationIdInt, currentStage);
                 } else
                     System.out.println("Citation " + citationIdInt + " Not Found");
             } catch (SQLException e) {

@@ -181,7 +181,6 @@ public class ModifyCitationController {
     @FXML
     private void handleModifyButton() {
         setEditableAll(true);
-        modifyButton.setText("Apply");
     }
 
     @FXML

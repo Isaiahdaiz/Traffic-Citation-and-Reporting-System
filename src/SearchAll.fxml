@@ -8,28 +8,28 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SearchAllController">
+<VBox alignment="TOP_CENTER" maxHeight="480.0" maxWidth="720.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SearchAllController">
 
                 <Label alignment="TOP_LEFT" text="Search">
       <font>
          <Font name="Arial Bold" size="22.0" />
       </font>
       <padding>
-         <Insets bottom="20.0" top="20.0" />
+         <Insets bottom="10.0" top="10.0" />
       </padding>
    </Label>
-   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
+   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="720.0" spacing="50.0">
       <children>
          <VBox spacing="5.0">
             <children>
                <Label text="Search by Citation ID">
                   <font>
-                     <Font name="Arial" size="18.0" />
+                     <Font name="Arial" size="16.0" />
                   </font>
                </Label>
                <TextField fx:id="citationIDTextField" prefWidth="380.0" promptText="12345678">
                   <font>
-                     <Font size="16.0" />
+                     <Font size="14.0" />
                   </font>
                   <VBox.margin>
                      <Insets left="10.0" />
@@ -39,7 +39,7 @@
                   <children>
                      <Label fx:id="citationIDErrorLabel" text="*Invalid Input" textFill="RED" visible="false">
                         <font>
-                           <Font name="Arial" size="16.0" />
+                           <Font name="Arial" size="14.0" />
                         </font>
                         <padding>
                            <Insets bottom="5.0" />
@@ -54,19 +54,19 @@
                   <children>
                      <Button fx:id="citationIDSearch" onAction="#handleCitaionIDSearchButton" prefWidth="100.0" style="-fx-background-color: #0a3bff;" text="Search" textFill="WHITE">
                         <font>
-                           <Font size="16.0" />
+                           <Font size="14.0" />
                         </font>
                      </Button>
                   </children>
                </HBox>
                <Label text="Search by Driver's License #">
                   <font>
-                     <Font name="Arial" size="18.0" />
+                     <Font name="Arial" size="16.0" />
                   </font>
                </Label>
                <TextField fx:id="driverLicenseNumberTextField" promptText="1234-1234-1234-1234">
                   <font>
-                     <Font size="16.0" />
+                     <Font size="14.0" />
                   </font>
                   <VBox.margin>
                      <Insets left="10.0" />
@@ -76,7 +76,7 @@
                   <children>
                      <Label fx:id="driverLicenseNumberErrorLabel" text="*Invalid Input" textFill="RED" visible="false">
                         <font>
-                           <Font name="Arial" size="16.0" />
+                           <Font name="Arial" size="14.0" />
                         </font>
                         <padding>
                            <Insets bottom="5.0" />
@@ -91,19 +91,19 @@
                   <children>
                      <Button fx:id="driverLicenseNumberSearch" onAction="#handleDLNumberSearchtButton" prefWidth="100.0" style="-fx-background-color: #0a3bff;" text="Search" textFill="WHITE">
                         <font>
-                           <Font size="16.0" />
+                           <Font size="14.0" />
                         </font>
                      </Button>
                   </children>
                </HBox>
                <Label text="Vehicle Identification Number">
                   <font>
-                     <Font name="Arial" size="18.0" />
+                     <Font name="Arial" size="16.0" />
                   </font>
                </Label>
                <TextField fx:id="vehicleIdTextField" promptText="2T2K1E56A12345674">
                   <font>
-                     <Font size="16.0" />
+                     <Font size="14.0" />
                   </font>
                   <VBox.margin>
                      <Insets left="10.0" />
@@ -113,7 +113,7 @@
                   <children>
                      <Label fx:id="vehicleIdErrorLabel" text="*Invalid Input" textFill="RED" visible="false">
                         <font>
-                           <Font name="Arial" size="16.0" />
+                           <Font name="Arial" size="14.0" />
                         </font>
                         <padding>
                            <Insets bottom="5.0" />
@@ -128,7 +128,7 @@
                   <children>
                      <Button fx:id="vehicleIdSearch" onAction="#handleVINSearchButton" prefWidth="100.0" style="-fx-background-color: #0a3bff;" text="Search" textFill="WHITE">
                         <font>
-                           <Font size="16.0" />
+                           <Font size="14.0" />
                         </font>
                      </Button>
                   </children>
@@ -136,9 +136,12 @@
             </children>
          </VBox>
       </children>
+      <padding>
+         <Insets bottom="10.0" />
+      </padding>
    </HBox>
    <padding>
-      <Insets top="100.0" />
+      <Insets top="50.0" />
    </padding>
 
 </VBox>
