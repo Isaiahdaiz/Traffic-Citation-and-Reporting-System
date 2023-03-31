@@ -11,49 +11,43 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NewCitationController">
+<VBox alignment="TOP_CENTER" maxHeight="480.0" maxWidth="720.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NewCitationController">
 
                 <Label alignment="TOP_LEFT" text="New Citation">
       <font>
          <Font name="Arial Bold" size="22.0" />
       </font>
       <padding>
-         <Insets bottom="20.0" top="20.0" />
+         <Insets top="20.0" />
       </padding>
    </Label>
-   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
+   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
       <children>
-         <VBox spacing="5.0">
+         <VBox prefWidth="288.0">
             <children>
                <Label text="Citation ID">
                   <font>
-                     <Font name="Arial" size="18.0" />
+                     <Font name="Arial" size="16.0" />
                   </font>
                </Label>
                <Label fx:id="citationIdLabel" text="0000001">
                   <font>
-                     <Font name="Arial" size="16.0" />
+                     <Font name="Arial" size="14.0" />
                   </font>
-                  <padding>
-                     <Insets bottom="5.0" />
-                  </padding>
                </Label>
                <Label text="Date &amp; Time">
                   <font>
-                     <Font name="Arial" size="18.0" />
+                     <Font name="Arial" size="16.0" />
                   </font>
                </Label>
                <Label fx:id="dateTimeLabel" text="2000-01-01   01:01:01">
                   <font>
-                     <Font name="Arial" size="16.0" />
+                     <Font name="Arial" size="14.0" />
                   </font>
-                  <padding>
-                     <Insets bottom="5.0" />
-                  </padding>
                </Label>
                <Label text="Type">
                   <font>
-                     <Font name="Arial" size="18.0" />
+                     <Font name="Arial" size="16.0" />
                   </font>
                </Label>
                <ComboBox fx:id="typeComboBox" prefHeight="25.0" prefWidth="300.0" promptText="Select Citation Type">
@@ -63,12 +57,12 @@
                </ComboBox>
                <Label text="Driver's License Number">
                   <font>
-                     <Font name="Arial" size="18.0" />
+                     <Font name="Arial" size="16.0" />
                   </font>
                </Label>
                <TextField fx:id="driverLicenseNumberTextField" promptText="1234-1234-1234-1234">
                   <font>
-                     <Font size="16.0" />
+                     <Font name="Arial" size="14.0" />
                   </font>
                   <VBox.margin>
                      <Insets left="10.0" />
@@ -76,23 +70,20 @@
                </TextField>
                <Label fx:id="driverLicenseNumberErrorLabel" text="*Invalid Input" textFill="RED" visible="false">
                   <font>
-                     <Font name="Arial" size="16.0" />
+                     <Font name="Arial" size="14.0" />
                   </font>
-                  <padding>
-                     <Insets bottom="5.0" />
-                  </padding>
                   <VBox.margin>
                      <Insets left="10.0" />
                   </VBox.margin>
                </Label>
                <Label text="License Plate Number">
                   <font>
-                     <Font name="Arial" size="18.0" />
+                     <Font name="Arial" size="16.0" />
                   </font>
                </Label>
                <TextField fx:id="licensePlateNumberTextField" promptText="BPZK 686">
                   <font>
-                     <Font size="16.0" />
+                     <Font name="Arial" size="14.0" />
                   </font>
                   <VBox.margin>
                      <Insets left="10.0" />
@@ -100,23 +91,20 @@
                </TextField>
                <Label fx:id="licensePlateNumberErrorLabel" text="*Invalid Input" textFill="RED" visible="false">
                   <font>
-                     <Font name="Arial" size="16.0" />
+                     <Font name="Arial" size="14.0" />
                   </font>
-                  <padding>
-                     <Insets bottom="5.0" />
-                  </padding>
                   <VBox.margin>
                      <Insets left="10.0" />
                   </VBox.margin>
                </Label>
                <Label text="Vehicle Identification Number">
                   <font>
-                     <Font name="Arial" size="18.0" />
+                     <Font name="Arial" size="16.0" />
                   </font>
                </Label>
                <TextField fx:id="vehicleIdTextField" promptText="2T2K1E56A12345674">
                   <font>
-                     <Font size="16.0" />
+                     <Font name="Arial" size="14.0" />
                   </font>
                   <VBox.margin>
                      <Insets left="10.0" />
@@ -124,23 +112,20 @@
                </TextField>
                <Label fx:id="vehicleIdErrorLabel" text="*Invalid Input" textFill="RED" visible="false">
                   <font>
-                     <Font name="Arial" size="16.0" />
+                     <Font name="Arial" size="14.0" />
                   </font>
-                  <padding>
-                     <Insets bottom="5.0" />
-                  </padding>
                   <VBox.margin>
                      <Insets left="10.0" />
                   </VBox.margin>
                </Label>
                <Label text="Fine Amount">
                   <font>
-                     <Font name="Arial" size="18.0" />
+                     <Font name="Arial" size="16.0" />
                   </font>
                </Label>
                <TextField fx:id="fineAmountTextArea" promptText="000000.00">
                   <font>
-                     <Font size="16.0" />
+                     <Font name="Arial" size="14.0" />
                   </font>
                   <VBox.margin>
                      <Insets left="10.0" />
@@ -148,11 +133,8 @@
                </TextField>
                <Label fx:id="fineAmountErrorLabel" text="*Invalid Input" textFill="RED" visible="false">
                   <font>
-                     <Font name="Arial" size="16.0" />
+                     <Font name="Arial" size="14.0" />
                   </font>
-                  <padding>
-                     <Insets bottom="5.0" />
-                  </padding>
                </Label>
                <Label fx:id="trafficSchoolLabel" text="Traffic School" visible="false">
                   <font>
@@ -161,7 +143,7 @@
                </Label>
                 <Button fx:id="bookButton" onAction="#handleBookButton" prefWidth="100.0" style="-fx-background-color: #0a3bff;" text="Book" textFill="WHITE" visible="false">
                   <font>
-                     <Font name="Arial" size="16.0" />
+                     <Font name="Arial" size="14.0" />
                   </font>
                   <VBox.margin>
                      <Insets left="10.0" />
@@ -169,25 +151,31 @@
                </Button>
             </children>
          </VBox>
-         <VBox alignment="BOTTOM_LEFT" spacing="10.0">
+         <VBox alignment="BOTTOM_LEFT" prefHeight="552.0" prefWidth="405.0">
             <children>
                <Label text="Notes">
                   <font>
-                     <Font name="Arial" size="18.0" />
+                     <Font name="Arial" size="16.0" />
                   </font>
                </Label>
-               <TextArea fx:id="notesTextArea" prefHeight="275.0" prefWidth="500.0">
+               <TextArea fx:id="notesTextArea">
                   <font>
-                     <Font name="Arial" size="16.0" />
-                  </font></TextArea>
+                     <Font name="Arial" size="14.0" />
+                  </font>
+                  <VBox.margin>
+                     <Insets bottom="10.0" />
+                  </VBox.margin></TextArea>
                <Pane nodeOrientation="RIGHT_TO_LEFT">
                   <children>
                      <Button fx:id="submitButton" onAction="#handleSubmitButton" prefWidth="100.0" style="-fx-background-color: #0a3bff;" text="Submit" textFill="WHITE">
                         <font>
-                           <Font size="16.0" />
+                           <Font size="14.0" />
                         </font>
                      </Button>
                   </children>
+                  <VBox.margin>
+                     <Insets bottom="10.0" />
+                  </VBox.margin>
                </Pane>
             </children>
          </VBox>

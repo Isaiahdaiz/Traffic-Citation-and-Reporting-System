@@ -84,5 +84,28 @@ public class SearchAllController {
     private void handleVINSearchButton() {
         // code to handle search by VIN
         String regex = "[0-9A-Z]{17}"; // 2T2K1E56A12345674
+
+        if (vehicleIdTextField.getText() == null || vehicleIdTextField.getText().isEmpty()
+                || !vehicleIdTextField.getText().matches(regex)) {
+            vehicleIdErrorLabel.setText("*Invalid Input");
+            vehicleIdErrorLabel.setVisible(true);
+        } else {
+            vehicleIdErrorLabel.setVisible(false);
+            String vin = vehicleIdTextField.getText();
+            try {
+                Vehicle vehicle = Vehicle.searchVehicle(vin);
+                if (vehicle != null) {
+                    System.out.println("Vehicle found \n" + vehicle.toString());
+                    Load load = new Load(); // Get the current stage and pass it to the modifyVehicle method
+                    Stage currentStage = (Stage) vehicleIdTextField.getScene().getWindow();
+                    load.modifyVehicle(vin, currentStage);
+                } else {
+                    System.out.println("Vehicle " + vin + " Not Found");
+                }
+            } catch (SQLException | IOException e) {
+                System.out.println("Error searching for vehicle");
+                e.printStackTrace();
+            }
+        }
     }
 }

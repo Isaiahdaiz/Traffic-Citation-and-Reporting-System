@@ -34,6 +34,25 @@ public class Load {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
+    public void modifyVehicle(String vehicleId, Stage currentStage) throws IOException {
+        previousScene = currentStage.getScene();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifyVehicle.fxml"));
+        Parent root = loader.load();
+        ModifyVehicleController controller = loader.getController();
+        controller.initialize(vehicleId);
+        currentStage.setScene(new Scene(root));
+    }
+
+    // Load New Vehicle
+    public void newVehicle() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("NewVehicle.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
     // Load Modify citation screen
     public void trafficSchool(Citation citation) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("TrafficSchool.fxml"));
