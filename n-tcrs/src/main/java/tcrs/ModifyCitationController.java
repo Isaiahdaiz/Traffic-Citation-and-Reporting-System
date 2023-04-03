@@ -1,4 +1,4 @@
-
+package tcrs;
 // Author: Isaiah Daiz
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -238,7 +238,7 @@ public class ModifyCitationController {
         String regex2 = "[A-Z]{4} \\d{3}"; // AAAA ###
         String regex3 = "[0-9A-Z]{17}"; // 2T2K1E56A12345674
         String regex4 = "^\\d+(\\.\\d{1,2})?$"; // ..###.##
-        String regex5 = "^[A-Za-z'-]+(?:\s+[A-Za-z'-]+)*$"; // Name Name
+        String regex5 = "^[A-Za-z'-]+(?:[A-Za-z'-]+)*$"; // Name Name
 
         // Convert text fields to uppercase
         licensePlateNumberTextField.setText(licensePlateNumberTextField.getText().toUpperCase());

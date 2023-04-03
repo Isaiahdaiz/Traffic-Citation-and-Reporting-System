@@ -26,7 +26,7 @@ public class AuthController {
         User user = new User(usernameField.getText(), passwordField.getText());
         boolean isUserValid = authModel.AuthenticateUser(user.getUsername(), user.getPassword());
         if (isUserValid) {
-            App.setRoot("primary");
+            App.setRoot("DashboardLocal");
         } else {
             loginValidation.setTextFill(Color.RED);
             loginValidation.setVisible(true);

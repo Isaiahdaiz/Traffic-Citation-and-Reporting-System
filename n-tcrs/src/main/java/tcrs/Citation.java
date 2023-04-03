@@ -1,4 +1,4 @@
-// Author: Isaiah Daiz
+package tcrs;// Author: Isaiah Daiz
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -170,10 +170,10 @@ public class Citation {
     }
 
     // List all citations in the database
-    public static List<Citation> getAllCitations() throws SQLException {
+    public static List<Citation> getAllCitations() throws Exception {
         List<Citation> citations = new ArrayList<>();
 
-        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+        try (Connection connection = DatabaseUtils.getConnection()) {
             String selectCitationsSql = "SELECT * FROM citations";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(selectCitationsSql);
@@ -326,13 +326,13 @@ public class Citation {
                 '}';
     }
 
-    public static void main(String[] args) {
-
-        try {
-            System.out.println(Citation.searchCitation(3).toString());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void main(String[] args) {
+//
+//        try {
+//            System.out.println(Citation.searchCitation(3).toString());
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 }

@@ -1,4 +1,4 @@
-
+package tcrs;
 // Author: Isaiah Daiz
 import java.io.IOException;
 import java.net.URL;
@@ -63,7 +63,7 @@ public class DashboardLocalController implements Initializable {
     private Button refreshButton;
 
     @FXML
-    private void handleRefreshButton() throws SQLException {
+    private void handleRefreshButton() throws Exception {
         refreshTable();
     }
 
@@ -143,7 +143,7 @@ public class DashboardLocalController implements Initializable {
                         }
                     } catch (SQLException e) {
                         e.printStackTrace();
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
@@ -165,18 +165,18 @@ public class DashboardLocalController implements Initializable {
                         }
                     } catch (SQLException e) {
                         e.printStackTrace();
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
             });
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void refreshTable() throws SQLException {
+    private void refreshTable() throws Exception {
         // Clear current data in the tables
         citationTable.getItems().clear();
         vehicleTable.getItems().clear();

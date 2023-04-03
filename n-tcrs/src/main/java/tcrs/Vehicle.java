@@ -1,3 +1,4 @@
+package tcrs;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -147,7 +148,7 @@ public class Vehicle {
     public static List<Vehicle> getAllVehicles() throws SQLException {
         List<Vehicle> vehicles = new ArrayList<>();
 
-        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+        try (Connection connection = DatabaseUtils.getConnection()) {
             String selectVehiclesSql = "SELECT * FROM Vehicles";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(selectVehiclesSql);
@@ -166,6 +167,8 @@ public class Vehicle {
                         warrantStatus, notes);
                 vehicles.add(vehicle);
             }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 
         return vehicles;
@@ -228,12 +231,12 @@ public class Vehicle {
                 '}';
     }
 
-    public static void main(String[] args) {
-
-        try {
-            System.out.println(Vehicle.searchVehicle("1HGBH41JXMN109186").toString());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void main(String[] args) {
+//
+//        try {
+//            System.out.println(Vehicle.searchVehicle("1HGBH41JXMN109186").toString());
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

@@ -1,4 +1,5 @@
 // Author: Isaiah Daiz
+package tcrs;
 import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
