@@ -16,7 +16,7 @@
 <VBox alignment="TOP_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="480.0" prefWidth="720.0" spacing="10.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tcrs.DashboardLocalController">
    <ComboBox fx:id="itemTypeComboBox" prefWidth="150.0" promptText="Create New" />
 
-                <Label alignment="TOP_LEFT" text="Welcome [username]">
+                <Label fx:id="welcomeTitle" alignment="TOP_LEFT" text="Welcome">
       <font>
          <Font name="Arial Bold" size="22.0" />
       </font>

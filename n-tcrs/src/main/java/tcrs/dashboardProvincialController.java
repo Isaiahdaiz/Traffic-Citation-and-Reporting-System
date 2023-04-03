@@ -27,9 +27,9 @@ public class dashboardProvincialController {
     @FXML private Label invalidVIN;
     @FXML private TextField vinTextField;
 
-    //private Connection connection;
-
     public void initialize() {
+
+        welcomeName.setText(welcomeName.getText() + " " + AuthController.user.getUsername());
         invalidCitationText.setVisible(false);
         invalidDriver.setVisible(false);
         invalidVIN.setVisible(false);

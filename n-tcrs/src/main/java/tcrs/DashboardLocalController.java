@@ -10,10 +10,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
@@ -61,6 +58,8 @@ public class DashboardLocalController implements Initializable {
 
     @FXML
     private Button refreshButton;
+    @FXML
+    private Label welcomeTitle;
 
     @FXML
     private void handleRefreshButton() throws Exception {
@@ -68,6 +67,9 @@ public class DashboardLocalController implements Initializable {
     }
 
     public void initialize(URL location, ResourceBundle resources) {
+
+        welcomeTitle.setText(welcomeTitle.getText() + " " + AuthController.user.getUsername());
+
         // Combo Box
         itemTypeComboBox.getItems().addAll("Citation", "Driver", "Vehicle");
         itemTypeComboBox.setOnAction(event -> {

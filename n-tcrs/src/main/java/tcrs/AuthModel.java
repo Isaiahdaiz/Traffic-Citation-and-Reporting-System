@@ -2,11 +2,13 @@ package tcrs;
 
 import java.sql.*;
 
+import static tcrs.AuthController.user;
+
 public class AuthModel {
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
 
-    public User AuthenticateUser(User user) throws SQLException {
+    public User AuthenticateUser() throws SQLException {
         //boolean isUserValid = false;
 
         String myQuery = "select * from Users where username =? and password =?";

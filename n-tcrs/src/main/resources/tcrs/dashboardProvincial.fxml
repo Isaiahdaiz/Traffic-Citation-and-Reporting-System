@@ -53,7 +53,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label id="welcomeName" fx:id="welcomeName" alignment="CENTER" layoutX="325.0" layoutY="230.0" prefHeight="60.0" prefWidth="410.0" text="Welcome User" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+            <Label id="welcomeName" fx:id="welcomeName" alignment="CENTER" layoutX="325.0" layoutY="230.0" prefHeight="60.0" prefWidth="410.0" text="Welcome" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
                <font>
                   <Font name="Helvetica" size="17.0" />
                </font>
