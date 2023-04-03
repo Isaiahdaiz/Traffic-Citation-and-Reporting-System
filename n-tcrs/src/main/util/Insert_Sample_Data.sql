@@ -1,11 +1,11 @@
 -- Sample insert data
 INSERT INTO Users (Username, Password, Type, Status)
 VALUES 
-    ('admin', 'password', 'administrator', 'active'),
-    ('john', 'password', 'officer', 'active'),
-    ('jane', 'password', 'officer', 'inactive'),
-    ('jim', 'password', 'officer', 'active'),
-    ('jack', 'password', 'officer', 'inactive');
+    ('admin', 'password', 'local', 'active'),
+    ('john', 'password', 'local', 'active'),
+    ('jane', 'password', 'local', 'inactive'),
+    ('jim', 'password', 'provincial', 'active'),
+    ('jack', 'password', 'provincial', 'inactive');
 
 INSERT INTO Vehicles (VIN, LicensePlateNumber, Make, Model, RegistrationStatus, StolenStatus, WarrantStatus, Notes) VALUES 
 ('1GNSKAKC9FR288113', 'ABC123', 'Chevrolet', 'Tahoe', true, false, false, 'Red SUV'), 
