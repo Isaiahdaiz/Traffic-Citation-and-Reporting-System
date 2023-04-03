@@ -24,9 +24,14 @@ public class AuthController {
 
         AuthModel authModel = new AuthModel();
         User user = new User(usernameField.getText(), passwordField.getText());
-        boolean isUserValid = authModel.AuthenticateUser(user.getUsername(), user.getPassword());
-        if (isUserValid) {
-            App.setRoot("DashboardLocal");
+        user = authModel.AuthenticateUser(user);
+
+        if (user.isValid) {
+            if (user.getType().toUpperCase().equals("LOCAL")) {
+                App.setRoot("DashboardLocal");
+            } else if (user.getType().toUpperCase().equals("PROVINCIAL")) {
+                App.setRoot("dashboardProvincial");
+            }
         } else {
             loginValidation.setTextFill(Color.RED);
             loginValidation.setVisible(true);

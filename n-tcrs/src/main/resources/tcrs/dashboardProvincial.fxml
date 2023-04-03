@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Author David.G-->
+
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -79,7 +79,7 @@
                                     <Font name="Helvetica" size="12.0" />
                                  </font>
                               </Label>
-                              <Button mnemonicParsing="false" onAction="citationSearch" prefHeight="12.0" prefWidth="70.0" styleClass="prov-btn-search" stylesheets="@styling.css" text="Search" textFill="#fffdfd">
+                              <Button mnemonicParsing="false" onAction="#citationSearch" prefHeight="12.0" prefWidth="70.0" styleClass="prov-btn-search" stylesheets="@styling.css" text="Search" textFill="#fffdfd">
                                  <HBox.margin>
                                     <Insets left="60.0" top="5.0" />
                                  </HBox.margin>
@@ -101,7 +101,7 @@
                         </TextField>
                         <HBox prefHeight="45.0" prefWidth="201.0">
                            <children>
-                              <Label text="* invalid input" textFill="RED">
+                              <Label fx:id="invalidDriver" text="* invalid input" textFill="RED">
                                  <font>
                                     <Font name="Helvetica" size="12.0" />
                                  </font>
@@ -121,7 +121,7 @@
                         <TextField />
                         <HBox prefHeight="40.0" prefWidth="201.0">
                            <children>
-                              <Label text="* invalid input" textFill="RED">
+                              <Label fx:id="invalidVIN" text="* invalid input" textFill="RED">
                                  <font>
                                     <Font name="Helvetica" size="12.0" />
                                  </font>

@@ -22,7 +22,7 @@ public class dashboardProvincialController {
     @FXML private Label welcomeName;
     @FXML private TextField citationTextField;
     @FXML private TextField driverTextField;
-    @FXML private Label invalidCitation;
+    @FXML private Label invalidCitationText;
     @FXML private Label invalidDriver;
     @FXML private Label invalidVIN;
     @FXML private TextField vinTextField;
@@ -30,7 +30,7 @@ public class dashboardProvincialController {
     //private Connection connection;
 
     public void initialize() {
-        invalidCitation.setVisible(false);
+        invalidCitationText.setVisible(false);
         invalidDriver.setVisible(false);
         invalidVIN.setVisible(false);
         /* 
@@ -60,13 +60,13 @@ public class dashboardProvincialController {
         String regex = "\\d{8}"; // ########
         if (citationTextField.getText() == null || citationTextField.getText().isEmpty()
                 || !citationTextField.getText().matches(regex)) {
-            invalidCitation.setText("*Invalid Input");
-            invalidCitation.setVisible(true);
+            invalidCitationText.setText("*Invalid Input");
+            invalidCitationText.setVisible(true);
         } else {
-            invalidCitation.setVisible(false);
+            invalidCitationText.setVisible(false);
             if (!Citation.citationIdExists(Integer.parseInt(citationTextField.getText()))) {
-                invalidCitation.setText("*Citation does not exist");
-                invalidCitation.setVisible(true);
+                invalidCitationText.setText("*Citation does not exist");
+                invalidCitationText.setVisible(true);
                 System.out.println("Citation does not exist");
                 return;
             }
