@@ -1,7 +1,9 @@
 package tcrs;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.net.Authenticator;
@@ -13,6 +15,8 @@ public class AuthController {
     TextField usernameField;
     @FXML
     TextField passwordField;
+    @FXML
+    Label loginValidation;
 
 
     @FXML
@@ -23,6 +27,9 @@ public class AuthController {
         boolean isUserValid = authModel.AuthenticateUser(user.getUsername(), user.getPassword());
         if (isUserValid) {
             App.setRoot("primary");
+        } else {
+            loginValidation.setTextFill(Color.RED);
+            loginValidation.setVisible(true);
         }
 
     }
