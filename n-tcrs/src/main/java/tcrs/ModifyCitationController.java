@@ -245,7 +245,7 @@ public class ModifyCitationController {
         String regex5 = "^[A-Za-z'-]+(?:\\s+[A-Za-z'-]+)*$"; // Name Name
 
         // Convert text fields to uppercase
-        licensePlateNumberTextField.setText(licensePlateNumberTextField.getText().toUpperCase());
+        //licensePlateNumberTextField.setText(licensePlateNumberTextField.getText().toUpperCase());
 
         // Driver's License Validation
         if (driverLicenseNumberTextField.getText() == null || driverLicenseNumberTextField.getText().isEmpty()
@@ -257,15 +257,15 @@ public class ModifyCitationController {
             driverLicenseNumberErrorLabel.setVisible(false);
         }
         // License Plate Validation
-        if (licensePlateNumberTextField.getText() == null || licensePlateNumberTextField.getText().isEmpty()
-                || !licensePlateNumberTextField.getText().matches(regex2)) {
-            licensePlateNumberErrorLabel.setText("*Invalid Input");
-            licensePlateNumberErrorLabel.setVisible(true);
-            isValid = false;
-        } else {
-            licensePlateNumberErrorLabel.setVisible(false);
+        // if (licensePlateNumberTextField.getText() == null || licensePlateNumberTextField.getText().isEmpty()
+        //         || !licensePlateNumberTextField.getText().matches(regex2)) {
+        //     licensePlateNumberErrorLabel.setText("*Invalid Input");
+        //     licensePlateNumberErrorLabel.setVisible(true);
+        //     isValid = false;
+        // } else {
+        //     licensePlateNumberErrorLabel.setVisible(false);
 
-        }
+        // }
 
         // VIN Validation
         if (vehicleIdTextField.getText() == null || vehicleIdTextField.getText().isEmpty()
@@ -307,8 +307,8 @@ public class ModifyCitationController {
         typeLabel.setVisible(!editable);
         driverLicenseNumberTextField.setStyle(editable ? defaultEntryStyle : uneditableEntryStyle);
         driverLicenseNumberTextField.setEditable(editable);
-        licensePlateNumberTextField.setStyle(editable ? defaultEntryStyle : uneditableEntryStyle);
-        licensePlateNumberTextField.setEditable(editable);
+        // licensePlateNumberTextField.setStyle(editable ? defaultEntryStyle : uneditableEntryStyle);
+        // licensePlateNumberTextField.setEditable(editable);
         vehicleIdTextField.setStyle(editable ? defaultEntryStyle : uneditableEntryStyle);
         vehicleIdTextField.setEditable(editable);
         fineAmountTextArea.setStyle(editable ? defaultEntryStyle : uneditableEntryStyle);

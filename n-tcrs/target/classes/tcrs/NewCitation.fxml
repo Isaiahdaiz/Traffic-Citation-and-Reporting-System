@@ -76,6 +76,8 @@
                      <Insets left="10.0" />
                   </VBox.margin>
                </Label>
+               <!-- License plate Not needed-->
+               <!--
                <Label text="License Plate Number">
                   <font>
                      <Font name="Arial" size="16.0" />
@@ -97,6 +99,7 @@
                      <Insets left="10.0" />
                   </VBox.margin>
                </Label>
+               -->
                <Label text="Vehicle Identification Number">
                   <font>
                      <Font name="Arial" size="16.0" />
