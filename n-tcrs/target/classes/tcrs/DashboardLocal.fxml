@@ -50,7 +50,20 @@
              </Tab>
              <Tab text="Drivers">
                <content>
-                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                           <TableView fx:id="driverTable" prefHeight="193.0" prefWidth="709.0">
+                              <columns>
+                                 <TableColumn fx:id="dLColumn" prefWidth="75.0" text="Driver's License #" />
+                                 <TableColumn fx:id="firstNameColumn" prefWidth="196.0" text="First Name" />
+                                 <TableColumn fx:id="lastNameColumn" prefWidth="75.0" text="Last Name" />
+                                 <TableColumn fx:id="licenseColumn" prefWidth="262.0" text="License Status" />
+                              </columns>
+                              <columnResizePolicy>
+                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                              </columnResizePolicy>
+                           </TableView>
+                        </children></AnchorPane>
                </content>
              </Tab>
                <Tab text="Vehicles">

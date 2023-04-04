@@ -86,7 +86,7 @@ public class ModifyCitationController {
 
     @FXML
     private Button modifyButton;
-
+    
     @FXML
     private Button applyButton;
 
