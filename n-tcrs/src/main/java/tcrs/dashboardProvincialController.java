@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
+import javafx.stage.Stage;
 
 //import java.sql.Connection;
 //import java.sql.DriverManager;
@@ -42,14 +43,17 @@ public class dashboardProvincialController {
         */
     }
 
+    @FXML
     public void switchToSearch() throws IOException {
         App.setRoot("dashboardProvincial");
     }
 
+    @FXML
     public void switchToLogout() throws IOException{
         App.setRoot("login");
     }
 
+    @FXML
     public void switchToReports() {
         //TO DO
     }
@@ -70,8 +74,6 @@ public class dashboardProvincialController {
                 System.out.println("Citation does not exist");
                 return;
             }
-            App.setRoot("NewCitation");
-            /* 
             try {
                 int citationIdInt = Integer.parseInt(citationTextField.getText());
                 Citation citation = Citation.searchCitation(citationIdInt);
@@ -84,17 +86,52 @@ public class dashboardProvincialController {
                 System.out.println("Error searching for citation");
                 e.printStackTrace();
             }
-            */
         }
     }
 
     @FXML
     public void driverSearch() {
         //To do
+        String regex = "\\d{4}-\\d{4}-\\d{4}-\\d{4}"; // ####-####-####-####
+
+        if (driverTextField.getText() == null || driverTextField.getText().isEmpty()
+                || !driverTextField.getText().matches(regex)) {
+                    invalidDriver.setText("*Invalid Input");
+                    invalidDriver.setVisible(true);
+        }
+        else {
+            invalidDriver.setVisible(false);
+            //String driversLicense = invalidDriver.getText();
+            //TODO Driver class
+        }
     }
 
     @FXML
     public void vinSearch() {
-        //To do
-    }
+         // code to handle search by VIN
+         String regex = "[0-9A-Z]{17}"; // 2T2K1E56A12345674
+
+         if (vinTextField.getText() == null || vinTextField.getText().isEmpty()
+                 || !vinTextField.getText().matches(regex)) {
+             invalidVIN.setText("*Invalid Input");
+             invalidVIN.setVisible(true);
+         } else {
+             invalidVIN.setVisible(false);
+             String vin = invalidVIN.getText();
+             try {
+                 Vehicle vehicle = Vehicle.searchVehicle(vin);
+                 if (vehicle != null) {
+                     System.out.println("Vehicle found \n" + vehicle.toString());
+                     Load load = new Load(); // Get the current stage and pass it to the modifyVehicle method
+                     Stage currentStage = (Stage) vinTextField.getScene().getWindow();
+                     load.modifyVehicle(vin, currentStage);
+                 } else {
+                     System.out.println("Vehicle " + vin + " Not Found");
+                 }
+             } catch (SQLException | IOException e) {
+                 System.out.println("Error searching for vehicle");
+                 e.printStackTrace();
+             }
+         }
+     }
 }

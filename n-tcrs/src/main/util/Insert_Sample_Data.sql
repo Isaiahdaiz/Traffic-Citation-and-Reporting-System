@@ -1,4 +1,6 @@
 -- Sample insert data
+USE project; 
+
 INSERT INTO Users (Username, Password, Type, Status)
 VALUES 
     ('admin', 'password', 'local', 'active'),
