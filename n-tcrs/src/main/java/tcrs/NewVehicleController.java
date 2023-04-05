@@ -1,9 +1,12 @@
+// Author: Isaiah Daiz
 package tcrs;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.sql.SQLException;
 
@@ -70,7 +73,7 @@ public class NewVehicleController {
         // Create a new Vehicle object with the values entered in the form fields
         vehicle.setMake(makeTextField.getText());
         vehicle.setModel(modelTextField.getText());
-        // vehicle.setYear(Integer.parseInt(yearTextField.getText()));
+        vehicle.setYear(Integer.parseInt(yearTextField.getText()));
         vehicle.setVIN(vinTextField.getText());
         vehicle.setRegistrationStatus(false);
         vehicle.setStolenStatus(false);
@@ -80,6 +83,9 @@ public class NewVehicleController {
         try {
             vehicle.save(); // Save the vehicle to the database
             System.out.println("Vehicle saved successfully!");
+            // close current window
+            Stage stage = (Stage) submitButton.getScene().getWindow();
+            stage.close();
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Vehicle save unsuccessful");

@@ -1,4 +1,6 @@
-package tcrs;// Author: Isaiah Daiz
+// Author: Isaiah Daiz
+package tcrs;
+
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -17,9 +19,9 @@ public class Citation {
     private String Notes;
 
     // SQL Server and Credentials
-    private static String url = "jdbc:mysql://localhost:3306/project";
+    private static String url = "jdbc:mysql://localhost:3306/project?useSSL=false";
     private static String username = "root";
-    private static String password = "SQL@dm1nms";
+    private static String password = "test";
 
     // Constructors
     public Citation() {
@@ -37,7 +39,7 @@ public class Citation {
 
     public Citation(String officer, String type, String dLNumber, String vIN, LocalDateTime date,
             double fineAmount, String paymentStatus, String trafficSchool, String notes) {
-        Officer = officer;
+        this.Officer = officer;
         Type = type;
         DLNumber = dLNumber;
         VIN = vIN;

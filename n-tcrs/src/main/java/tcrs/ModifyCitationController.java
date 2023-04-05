@@ -1,5 +1,6 @@
-package tcrs;
 // Author: Isaiah Daiz
+package tcrs;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -85,7 +86,7 @@ public class ModifyCitationController {
 
     @FXML
     private Button modifyButton;
-
+    
     @FXML
     private Button applyButton;
 
@@ -94,6 +95,7 @@ public class ModifyCitationController {
 
     private Citation citation;
     private int currCitationID;
+    private boolean comboBoxAdded = false;
 
     public void initialize(int currCitationID) {
         this.currCitationID = currCitationID;
@@ -102,7 +104,9 @@ public class ModifyCitationController {
 
         notesTextArea.requestFocus();
         // get default textfield style to return to
+        if (!comboBoxAdded)
         typeComboBox.getItems().addAll("Parking Violation", "Moving Vehicle Violation", "Fix-it Ticket");
+        comboBoxAdded = true;
         // hide/show traffic school section
         typeComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.equals("Moving Vehicle Violation")) {
@@ -238,10 +242,10 @@ public class ModifyCitationController {
         String regex2 = "[A-Z]{4} \\d{3}"; // AAAA ###
         String regex3 = "[0-9A-Z]{17}"; // 2T2K1E56A12345674
         String regex4 = "^\\d+(\\.\\d{1,2})?$"; // ..###.##
-        String regex5 = "^[A-Za-z'-]+(?:[A-Za-z'-]+)*$"; // Name Name
+        String regex5 = "^[A-Za-z'-]+(?:\\s+[A-Za-z'-]+)*$"; // Name Name
 
         // Convert text fields to uppercase
-        licensePlateNumberTextField.setText(licensePlateNumberTextField.getText().toUpperCase());
+        //licensePlateNumberTextField.setText(licensePlateNumberTextField.getText().toUpperCase());
 
         // Driver's License Validation
         if (driverLicenseNumberTextField.getText() == null || driverLicenseNumberTextField.getText().isEmpty()
@@ -253,15 +257,15 @@ public class ModifyCitationController {
             driverLicenseNumberErrorLabel.setVisible(false);
         }
         // License Plate Validation
-        if (licensePlateNumberTextField.getText() == null || licensePlateNumberTextField.getText().isEmpty()
-                || !licensePlateNumberTextField.getText().matches(regex2)) {
-            licensePlateNumberErrorLabel.setText("*Invalid Input");
-            licensePlateNumberErrorLabel.setVisible(true);
-            isValid = false;
-        } else {
-            licensePlateNumberErrorLabel.setVisible(false);
+        // if (licensePlateNumberTextField.getText() == null || licensePlateNumberTextField.getText().isEmpty()
+        //         || !licensePlateNumberTextField.getText().matches(regex2)) {
+        //     licensePlateNumberErrorLabel.setText("*Invalid Input");
+        //     licensePlateNumberErrorLabel.setVisible(true);
+        //     isValid = false;
+        // } else {
+        //     licensePlateNumberErrorLabel.setVisible(false);
 
-        }
+        // }
 
         // VIN Validation
         if (vehicleIdTextField.getText() == null || vehicleIdTextField.getText().isEmpty()
@@ -303,8 +307,8 @@ public class ModifyCitationController {
         typeLabel.setVisible(!editable);
         driverLicenseNumberTextField.setStyle(editable ? defaultEntryStyle : uneditableEntryStyle);
         driverLicenseNumberTextField.setEditable(editable);
-        licensePlateNumberTextField.setStyle(editable ? defaultEntryStyle : uneditableEntryStyle);
-        licensePlateNumberTextField.setEditable(editable);
+        // licensePlateNumberTextField.setStyle(editable ? defaultEntryStyle : uneditableEntryStyle);
+        // licensePlateNumberTextField.setEditable(editable);
         vehicleIdTextField.setStyle(editable ? defaultEntryStyle : uneditableEntryStyle);
         vehicleIdTextField.setEditable(editable);
         fineAmountTextArea.setStyle(editable ? defaultEntryStyle : uneditableEntryStyle);

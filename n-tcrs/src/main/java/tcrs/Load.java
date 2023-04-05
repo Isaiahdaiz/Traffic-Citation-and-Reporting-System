@@ -19,13 +19,16 @@ public class Load {
     //     stage.setScene(new Scene(root));
     //     stage.show();
     // }
+
     public void modifyCitation(int citationID, Stage currentStage) throws IOException {
-        previousScene = currentStage.getScene();
+        //previousScene = currentStage.getScene();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifyCitation.fxml"));
         Parent root = loader.load();
         ModifyCitationController controller = loader.getController();
+        Stage stage = new Stage();
         controller.initialize(citationID);
-        currentStage.setScene(new Scene(root));
+        stage.setScene(new Scene(root));
+        stage.show();
     }
     // Load New Citation
     public void newCitation() throws IOException {
@@ -36,13 +39,25 @@ public class Load {
         stage.show();
     }
 
+    // Load New Citation
+    public void newDriver() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("NewDriver.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    // Modify Vehicle
     public void modifyVehicle(String vehicleId, Stage currentStage) throws IOException {
         previousScene = currentStage.getScene();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifyVehicle.fxml"));
         Parent root = loader.load();
         ModifyVehicleController controller = loader.getController();
+        Stage stage = new Stage();
         controller.initialize(vehicleId);
-        currentStage.setScene(new Scene(root));
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     // Load New Vehicle

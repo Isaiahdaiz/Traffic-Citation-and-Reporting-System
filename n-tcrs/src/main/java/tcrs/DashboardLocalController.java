@@ -1,5 +1,7 @@
-package tcrs;
 // Author: Isaiah Daiz
+
+package tcrs;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -37,6 +39,21 @@ public class DashboardLocalController implements Initializable {
 
     @FXML
     private TableColumn<Citation, Integer> citationIdColumn;
+
+    @FXML
+    private TableView<Driver> driverTable;
+
+    @FXML
+    private TableColumn<Driver, String> dLColumn;
+
+    @FXML
+    private TableColumn<Driver, String> firstNameColumn;
+
+    @FXML
+    private TableColumn<Driver, String> lastNameColumn;
+
+    @FXML
+    private TableColumn<Driver, String> licenseColumn;
 
     @FXML
     private TableView<Vehicle> vehicleTable;
@@ -96,7 +113,13 @@ public class DashboardLocalController implements Initializable {
                         }
                         break;
                     case "Driver":
-                        // code to handle driver item creation
+                        try {
+                            load.newDriver();
+                            itemTypeComboBox.setPromptText("Create New");
+                            itemTypeComboBox.setValue(null);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         break;
                 }
             }
@@ -108,6 +131,12 @@ public class DashboardLocalController implements Initializable {
         issuedByColumn.setCellValueFactory(new PropertyValueFactory<>("officer"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         paymentStatusColumn.setCellValueFactory(new PropertyValueFactory<>("paymentStatus"));
+
+        // set up columns
+        dLColumn.setCellValueFactory(new PropertyValueFactory<>("dLNumber"));
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        licenseColumn.setCellValueFactory(new PropertyValueFactory<>("licenseStatus"));
 
         // set up columns for vehicleTable
         makeColumn.setCellValueFactory(new PropertyValueFactory<>("make"));
@@ -123,11 +152,39 @@ public class DashboardLocalController implements Initializable {
             // populate the table with the citations
             citationTable.getItems().addAll(citations);
 
+            // get all drivers from database
+            List<Driver> drivers = Driver.getAllDrivers();
+
+            // populate the table with the citations
+            driverTable.getItems().addAll(drivers);
+
             // get all vehicles from the database
             List<Vehicle> vehicles = Vehicle.getAllVehicles();
 
             // populate the vehicleTable with the vehicles
             vehicleTable.getItems().addAll(vehicles);
+
+            // add listener for double click
+            citationTable.setOnMouseClicked(event -> {
+                if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
+                    Citation citation = citationTable.getSelectionModel().getSelectedItem();
+                    try {
+                        if (citation != null && Citation.citationIdExists(citation.getCitationID())) {
+                            Load load = new Load();
+                            Node node = (Node) event.getSource();
+                            Stage currentStage = (Stage) node.getScene().getWindow();
+
+                            load.modifyCitation(citation.getCitationID(), currentStage);
+                        } else {
+                            refreshTable();
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
 
             // add listener for double click
             citationTable.setOnMouseClicked(event -> {
@@ -181,14 +238,17 @@ public class DashboardLocalController implements Initializable {
     private void refreshTable() throws Exception {
         // Clear current data in the tables
         citationTable.getItems().clear();
+        driverTable.getItems().clear();
         vehicleTable.getItems().clear();
-    
+
         // Retrieve new data from the database
         List<Citation> citations = Citation.getAllCitations();
+        List<Driver> drivers = Driver.getAllDrivers();
         List<Vehicle> vehicles = Vehicle.getAllVehicles();
-    
+
         // Populate the tables with the new data
         citationTable.getItems().addAll(citations);
+        driverTable.getItems().addAll(drivers);
         vehicleTable.getItems().addAll(vehicles);
     }
 }

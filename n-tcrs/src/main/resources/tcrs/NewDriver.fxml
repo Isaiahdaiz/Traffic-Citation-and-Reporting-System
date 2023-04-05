@@ -2,7 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="480.0" maxWidth="720.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tcrs.NewCitationController">
+<VBox alignment="TOP_CENTER" maxHeight="480.0" maxWidth="720.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tcrs.NewDriverController">
 
-                <Label alignment="TOP_LEFT" text="New Citation">
+                <Label alignment="TOP_LEFT" text="New Driver">
       <font>
          <Font name="Arial Bold" size="22.0" />
       </font>
@@ -21,40 +21,15 @@
          <Insets top="20.0" />
       </padding>
    </Label>
-   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+   <HBox alignment="CENTER" prefHeight="413.0" prefWidth="720.0" spacing="10.0">
       <children>
          <VBox prefWidth="288.0">
             <children>
-               <Label text="Citation ID">
+               <Label fx:id="dateTimeLabel" prefHeight="41.0" prefWidth="137.0" text="Driver Information">
                   <font>
                      <Font name="Arial" size="16.0" />
                   </font>
                </Label>
-               <Label fx:id="citationIdLabel" text="0000001">
-                  <font>
-                     <Font name="Arial" size="14.0" />
-                  </font>
-               </Label>
-               <Label text="Date &amp; Time">
-                  <font>
-                     <Font name="Arial" size="16.0" />
-                  </font>
-               </Label>
-               <Label fx:id="dateTimeLabel" text="2000-01-01   01:01:01">
-                  <font>
-                     <Font name="Arial" size="14.0" />
-                  </font>
-               </Label>
-               <Label text="Type">
-                  <font>
-                     <Font name="Arial" size="16.0" />
-                  </font>
-               </Label>
-               <ComboBox fx:id="typeComboBox" prefHeight="25.0" prefWidth="300.0" promptText="Select Citation Type">
-                  <VBox.margin>
-                     <Insets bottom="15.0" left="10.0" />
-                  </VBox.margin>
-               </ComboBox>
                <Label text="Driver's License Number">
                   <font>
                      <Font name="Arial" size="16.0" />
@@ -72,18 +47,13 @@
                   <font>
                      <Font name="Arial" size="14.0" />
                   </font>
-                  <VBox.margin>
-                     <Insets left="10.0" />
-                  </VBox.margin>
                </Label>
-               <!-- License plate Not needed-->
-               <!--
-               <Label text="License Plate Number">
+               <Label text="First Name">
                   <font>
                      <Font name="Arial" size="16.0" />
                   </font>
                </Label>
-               <TextField fx:id="licensePlateNumberTextField" promptText="BPZK 686">
+               <TextField fx:id="firstNameTextField" promptText="John">
                   <font>
                      <Font name="Arial" size="14.0" />
                   </font>
@@ -91,7 +61,7 @@
                      <Insets left="10.0" />
                   </VBox.margin>
                </TextField>
-               <Label fx:id="licensePlateNumberErrorLabel" text="*Invalid Input" textFill="RED" visible="false">
+               <Label fx:id="firstNameErrorLabel" text="*Invalid Input" textFill="RED" visible="false">
                   <font>
                      <Font name="Arial" size="14.0" />
                   </font>
@@ -99,13 +69,12 @@
                      <Insets left="10.0" />
                   </VBox.margin>
                </Label>
-               -->
-               <Label text="Vehicle Identification Number">
+               <Label text="Last Name">
                   <font>
                      <Font name="Arial" size="16.0" />
                   </font>
                </Label>
-               <TextField fx:id="vehicleIdTextField" promptText="2T2K1E56A12345674">
+               <TextField fx:id="lastNameTextField" promptText="Doe">
                   <font>
                      <Font name="Arial" size="14.0" />
                   </font>
@@ -113,7 +82,7 @@
                      <Insets left="10.0" />
                   </VBox.margin>
                </TextField>
-               <Label fx:id="vehicleIdErrorLabel" text="*Invalid Input" textFill="RED" visible="false">
+               <Label fx:id="lastNameErrorLabel" text="*Invalid Input" textFill="RED" visible="false">
                   <font>
                      <Font name="Arial" size="14.0" />
                   </font>
@@ -121,37 +90,16 @@
                      <Insets left="10.0" />
                   </VBox.margin>
                </Label>
-               <Label text="Fine Amount">
+               <Label text="Date of Birth">
                   <font>
                      <Font name="Arial" size="16.0" />
                   </font>
                </Label>
-               <TextField fx:id="fineAmountTextArea" promptText="000000.00">
-                  <font>
-                     <Font name="Arial" size="14.0" />
-                  </font>
+               <DatePicker fx:id="dOBDatePicker" prefWidth="290.0">
                   <VBox.margin>
                      <Insets left="10.0" />
                   </VBox.margin>
-               </TextField>
-               <Label fx:id="fineAmountErrorLabel" text="*Invalid Input" textFill="RED" visible="false">
-                  <font>
-                     <Font name="Arial" size="14.0" />
-                  </font>
-               </Label>
-               <Label fx:id="trafficSchoolLabel" text="Traffic School" visible="false">
-                  <font>
-                     <Font name="Arial" size="18.0" />
-                  </font>
-               </Label>
-                <Button fx:id="bookButton" onAction="#handleBookButton" prefWidth="100.0" style="-fx-background-color: #0a3bff;" text="Book" textFill="WHITE" visible="false">
-                  <font>
-                     <Font name="Arial" size="14.0" />
-                  </font>
-                  <VBox.margin>
-                     <Insets left="10.0" />
-                  </VBox.margin>
-               </Button>
+               </DatePicker>
             </children>
          </VBox>
          <VBox alignment="BOTTOM_LEFT" prefHeight="552.0" prefWidth="405.0">

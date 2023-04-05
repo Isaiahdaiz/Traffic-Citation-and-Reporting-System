@@ -5,8 +5,10 @@ USE project;
 CREATE TABLE Vehicles (
   VIN VARCHAR(17) NOT NULL,
   LicensePlateNumber VARCHAR(10),
+  Year INT NOT NULL,
   Make VARCHAR(50),
   Model VARCHAR(50),
+  Color VARCHAR(50),
   RegistrationStatus BOOLEAN,
   StolenStatus BOOLEAN,
   WarrantStatus BOOLEAN,

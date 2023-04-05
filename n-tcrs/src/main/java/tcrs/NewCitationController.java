@@ -6,6 +6,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
@@ -31,11 +32,11 @@ public class NewCitationController {
     @FXML
     private Label driverLicenseNumberErrorLabel;
 
-    @FXML
-    private TextField licensePlateNumberTextField;
+    // @FXML
+    // private TextField licensePlateNumberTextField;
 
-    @FXML
-    private Label licensePlateNumberErrorLabel;
+    // @FXML
+    // private Label licensePlateNumberErrorLabel;
 
     @FXML
     private TextField vehicleIdTextField;
@@ -161,6 +162,9 @@ public class NewCitationController {
         try {
             citation.save(); // Save the citation to the database
             System.out.println("Citation saved successfully!");
+            // close current window
+            Stage stage = (Stage) submitButton.getScene().getWindow();
+            stage.close();
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Citation save unsuccessful");
@@ -176,7 +180,7 @@ public class NewCitationController {
         String regex4 = "^\\d+(\\.\\d{1,2})?$"; // ..###.##
 
         // Convert text fields to uppercase
-        licensePlateNumberTextField.setText(licensePlateNumberTextField.getText().toUpperCase());
+        //licensePlateNumberTextField.setText(licensePlateNumberTextField.getText().toUpperCase());
 
         // Driver's License Validation
         if (driverLicenseNumberTextField.getText() == null || driverLicenseNumberTextField.getText().isEmpty() || !driverLicenseNumberTextField.getText().matches(regex1)) {
@@ -187,14 +191,14 @@ public class NewCitationController {
             driverLicenseNumberErrorLabel.setVisible(false);
         }
         // License Plate Validation
-        if (licensePlateNumberTextField.getText() == null || licensePlateNumberTextField.getText().isEmpty() || !licensePlateNumberTextField.getText().matches(regex2)) {
-            licensePlateNumberErrorLabel.setText("*Invalid Input");
-            licensePlateNumberErrorLabel.setVisible(true);
-            isValid = false;
-        } else {
-            licensePlateNumberErrorLabel.setVisible(false);
+        // if (licensePlateNumberTextField.getText() == null || licensePlateNumberTextField.getText().isEmpty() || !licensePlateNumberTextField.getText().matches(regex2)) {
+        //     licensePlateNumberErrorLabel.setText("*Invalid Input");
+        //     licensePlateNumberErrorLabel.setVisible(true);
+        //     isValid = false;
+        // } else {
+        //     licensePlateNumberErrorLabel.setVisible(false);
 
-        }
+        // }
             
         // VIN Validation
         if (vehicleIdTextField.getText() == null || vehicleIdTextField.getText().isEmpty() || !vehicleIdTextField.getText().matches(regex3)) {
