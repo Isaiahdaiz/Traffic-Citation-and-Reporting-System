@@ -68,6 +68,8 @@ public class SearchAllController {
                     load.modifyCitation(citationIdInt, currentStage);
                 } else
                     System.out.println("Citation " + citationIdInt + " Not Found");
+                    citationIDErrorLabel.setText("*Citation not found");
+                    citationIDErrorLabel.setVisible(true);
             } catch (SQLException e) {
                 System.out.println("Error searching for citation");
                 e.printStackTrace();
@@ -79,7 +81,30 @@ public class SearchAllController {
     private void handleDLNumberSearchtButton() {
         // code to handle search by DL number
         String regex = "\\d{4}-\\d{4}-\\d{4}-\\d{4}"; // ####-####-####-####
-
+        if (driverLicenseNumberTextField.getText() == null || driverLicenseNumberTextField.getText().isEmpty()
+                || !driverLicenseNumberTextField.getText().matches(regex)) {
+            driverLicenseNumberErrorLabel.setText("*Invalid Input");
+            driverLicenseNumberErrorLabel.setVisible(true);
+        } else {
+            driverLicenseNumberErrorLabel.setVisible(false);
+            String dLNumber = driverLicenseNumberTextField.getText();
+            try {
+                Driver driver = Driver.searchDriver(dLNumber);
+                if (driver != null) {
+                    System.out.println("Driver found \n" + driver.toString());
+                    Load load = new Load(); // Get the current stage and pass it to the modifyVehicle method
+                    Stage currentStage = (Stage) driverLicenseNumberTextField.getScene().getWindow();
+                    load.modifyDriver(dLNumber, currentStage);
+                } else {
+                    System.out.println("Driver " + driver + " Not Found");
+                    driverLicenseNumberErrorLabel.setText("*Driver not found");
+                    driverLicenseNumberErrorLabel.setVisible(true);
+                }
+            } catch (SQLException | IOException e) {
+                System.out.println("Error searching for driver");
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML
@@ -103,6 +128,8 @@ public class SearchAllController {
                     load.modifyVehicle(vin, currentStage);
                 } else {
                     System.out.println("Vehicle " + vin + " Not Found");
+                    vehicleIdErrorLabel.setText("*Vehicle not found");
+                    vehicleIdErrorLabel.setVisible(true);
                 }
             } catch (SQLException | IOException e) {
                 System.out.println("Error searching for vehicle");

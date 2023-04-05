@@ -8,6 +8,10 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.time.format.DateTimeFormatter;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.StringConverter;
+import java.time.format.FormatStyle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -127,7 +131,34 @@ public class DashboardLocalController implements Initializable {
 
         // set up columns
         citationIdColumn.setCellValueFactory(new PropertyValueFactory<>("citationID"));
-        dateIssuedColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        citationIdColumn.setCellFactory(column -> new TextFieldTableCell<>(new StringConverter<>() {
+            @Override
+            public String toString(Integer integer) {
+                return String.format("%08d", integer);
+            }
+        
+            @Override
+            public Integer fromString(String string) {
+                return Integer.parseInt(string);
+            }
+        }));
+        dateIssuedColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
+        // Define the date and time format
+        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
+
+        // Set up custom cell factory for the dateIssuedColumn
+        dateIssuedColumn.setCellFactory(column -> new TableCell<Citation, LocalDateTime>() {
+            @Override
+            protected void updateItem(LocalDateTime date, boolean empty) {
+                super.updateItem(date, empty);
+
+                if (empty || date == null) {
+                    setText(null);
+                } else {
+                    setText(formatter.format(date));
+                }
+            }
+        });
         issuedByColumn.setCellValueFactory(new PropertyValueFactory<>("officer"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         paymentStatusColumn.setCellValueFactory(new PropertyValueFactory<>("paymentStatus"));
@@ -187,16 +218,16 @@ public class DashboardLocalController implements Initializable {
             });
 
             // add listener for double click
-            citationTable.setOnMouseClicked(event -> {
+            driverTable.setOnMouseClicked(event -> {
                 if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
-                    Citation citation = citationTable.getSelectionModel().getSelectedItem();
+                    Driver driver = driverTable.getSelectionModel().getSelectedItem();
                     try {
-                        if (citation != null && Citation.citationIdExists(citation.getCitationID())) {
+                        if (driver != null && Driver.searchDriver(driver.getDLNumber()) != null) {
                             Load load = new Load();
                             Node node = (Node) event.getSource();
                             Stage currentStage = (Stage) node.getScene().getWindow();
 
-                            load.modifyCitation(citation.getCitationID(), currentStage);
+                            load.modifyDriver(driver.getDLNumber(), currentStage);
                         } else {
                             refreshTable();
                         }

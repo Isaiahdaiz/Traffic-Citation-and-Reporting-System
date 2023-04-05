@@ -24,7 +24,7 @@
             </Label>
             <ButtonBar buttonMinWidth="80.0" prefHeight="40.0" prefWidth="430.0" style="-fx-background-color: #3333ff;">
               <buttons>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToSearch" prefHeight="40.0" prefWidth="100.0" styleClass="prov-btn-current" stylesheets="@styling.css" text="Search" textAlignment="CENTER" textFill="WHITE">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToSearch" prefHeight="40.0" prefWidth="100.0" styleClass="nav-btn-current" stylesheets="@styling.css" text="Search" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Helvetica" size="13.0" />
                      </font>
@@ -32,12 +32,12 @@
                         <Insets />
                      </opaqueInsets>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#switchToReports" prefHeight="38.0" prefWidth="100.0" styleClass="prov-btn-class" stylesheets="@styling.css" text="Reports" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#switchToReports" prefHeight="38.0" prefWidth="100.0" styleClass="nav-btn-class" stylesheets="@styling.css" text="Reports" textFill="WHITE">
                      <font>
                         <Font name="Helvetica" size="13.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#switchToLogout" prefHeight="38.0" prefWidth="60.0" styleClass="prov-btn-class" stylesheets="@styling.css" text="Logout" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#switchToLogout" prefHeight="38.0" prefWidth="60.0" styleClass="nav-btn-class" stylesheets="@styling.css" text="Logout" textFill="WHITE">
                      <font>
                         <Font name="Helvetica" size="13.0" />
                      </font>
@@ -53,7 +53,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label id="welcomeName" fx:id="welcomeName" alignment="CENTER" layoutX="325.0" layoutY="230.0" prefHeight="60.0" prefWidth="410.0" text="Welcome" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+            <Label id="welcomeName" fx:id="welcomeName" alignment="CENTER" layoutX="325.0" layoutY="230.0" prefHeight="60.0" prefWidth="410.0" text="Welcome User" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
                <font>
                   <Font name="Helvetica" size="17.0" />
                </font>
@@ -79,7 +79,7 @@
                                     <Font name="Helvetica" size="12.0" />
                                  </font>
                               </Label>
-                              <Button mnemonicParsing="false" onAction="#citationSearch" prefHeight="12.0" prefWidth="70.0" styleClass="prov-btn-search" stylesheets="@styling.css" text="Search" textFill="#fffdfd">
+                              <Button mnemonicParsing="false" onAction="#citationSearch" prefHeight="12.0" prefWidth="70.0" styleClass="btn-search" stylesheets="@styling.css" text="Search" textFill="#fffdfd">
                                  <HBox.margin>
                                     <Insets left="60.0" top="5.0" />
                                  </HBox.margin>
@@ -106,7 +106,7 @@
                                     <Font name="Helvetica" size="12.0" />
                                  </font>
                               </Label>
-                              <Button mnemonicParsing="false" prefHeight="12.0" prefWidth="70.0" styleClass="prov-btn-search" stylesheets="@styling.css" text="Search" textFill="#fffdfd">
+                              <Button mnemonicParsing="false" prefHeight="12.0" prefWidth="70.0" styleClass="btn-search" stylesheets="@styling.css" text="Search" textFill="#fffdfd">
                                  <HBox.margin>
                                     <Insets left="60.0" top="5.0" />
                                  </HBox.margin>
@@ -126,7 +126,7 @@
                                     <Font name="Helvetica" size="12.0" />
                                  </font>
                               </Label>
-                              <Button mnemonicParsing="false" prefHeight="12.0" prefWidth="70.0" styleClass="prov-btn-search" stylesheets="@styling.css" text="Search" textFill="#fffdfd">
+                              <Button mnemonicParsing="false" prefHeight="12.0" prefWidth="70.0" styleClass="btn-search" stylesheets="@styling.css" text="Search" textFill="#fffdfd">
                                  <HBox.margin>
                                     <Insets left="60.0" top="5.0" />
                                  </HBox.margin>

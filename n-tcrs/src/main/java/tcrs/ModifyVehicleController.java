@@ -147,11 +147,23 @@ public class ModifyVehicleController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             // User confirmed deletion, so delete the vehicle
-            vehicle.deleteVehicle();
-            // get a reference to the stage
-            Stage stage = (Stage) cancelButton.getScene().getWindow();
-            // close the stage
-            stage.close();
+            try {
+                vehicle.deleteVehicle();
+                // get a reference to the stage
+                Stage stage = (Stage) cancelButton.getScene().getWindow();
+                // close the stage
+                stage.close();
+            } catch (SQLException e) {
+                    e.printStackTrace();
+                    System.out.println("Cannot delete");
+                if (e.toString().contains("citations_ibfk_2")) {
+                    Alert alert1 = new Alert(AlertType.ERROR);
+                    alert1.setTitle("Delete error");
+                    alert1.setHeaderText(null);
+                    alert1.setContentText("Vehicle has outstanding citations");
+                    alert1.showAndWait();
+                }
+            }
         } else {
             // User cancelled deletion
         }

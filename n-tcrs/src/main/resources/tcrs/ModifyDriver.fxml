@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="480.0" maxWidth="720.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tcrs.NewDriverController">
+<VBox alignment="TOP_CENTER" maxHeight="480.0" maxWidth="720.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tcrs.ModifyDriverController">
 
                 <Label alignment="TOP_LEFT" text="Details">
       <font>
@@ -97,7 +97,7 @@
                      <Font name="Arial" size="16.0" />
                   </font>
                </Label>
-               <DatePicker fx:id="dOBDatePicker" prefWidth="290.0">
+               <DatePicker fx:id="dOBDatePicker" disable="true" prefWidth="290.0">
                   <VBox.margin>
                      <Insets left="10.0" />
                   </VBox.margin>
