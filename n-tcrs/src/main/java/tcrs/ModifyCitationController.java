@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
@@ -86,7 +87,7 @@ public class ModifyCitationController {
 
     @FXML
     private Button modifyButton;
-    
+
     @FXML
     private Button applyButton;
 
@@ -105,7 +106,7 @@ public class ModifyCitationController {
         notesTextArea.requestFocus();
         // get default textfield style to return to
         if (!comboBoxAdded)
-        typeComboBox.getItems().addAll("Parking Violation", "Moving Vehicle Violation", "Fix-it Ticket");
+            typeComboBox.getItems().addAll("Parking Violation", "Moving Vehicle Violation", "Fix-it Ticket");
         comboBoxAdded = true;
         // hide/show traffic school section
         typeComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -140,20 +141,31 @@ public class ModifyCitationController {
             e.printStackTrace();
         }
 
-        bookButton.setOnAction(event -> handleBookButton());
+        bookButton.setOnAction(event -> {
+            try {
+                handleBookButton();
+            } catch (NumberFormatException | IOException | SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        });
         modifyButton.setOnAction(event -> handleModifyButton());
         applyButton.setOnAction(event -> {
             try {
                 handleApplyButton();
             } catch (SQLException e) {
                 e.printStackTrace();
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
         });
     }
 
     @FXML
-    private void handleBookButton() {
-        // code to handle book button action
+    private void handleBookButton() throws NumberFormatException, IOException, SQLException {
+        Load load = new Load();
+        load.trafficSchool(Integer.parseInt(citationIdLabel.getText()), citation.getDLNumber());
     }
 
     @FXML
@@ -188,11 +200,19 @@ public class ModifyCitationController {
     }
 
     @FXML
-    private void handleApplyButton() throws SQLException {
+    private void handleApplyButton() throws Exception {
 
         // Check if fields are correct
         if (!validSubmission()) {
             System.out.println("Input invalid");
+            return;
+        }
+        
+        // Check if officer / user exists
+        if (User.searchUser(officerTextArea.getText()) == null) {
+            officerErrorLabel.setText("*Officer does not exist");
+            officerErrorLabel.setVisible(true);
+            System.out.println("Officer does not exist");
             return;
         }
 
@@ -216,7 +236,7 @@ public class ModifyCitationController {
         vehicleIdErrorLabel.setVisible(false);
 
         // Create a new Citation object with the values entered in the form fields
-        citation.setOfficer("John Smith"); // ** This needs to be replaced with user that logged in
+        citation.setOfficer(officerTextArea.getText()); // ** This needs to be replaced with user that logged in
         citation.setType(typeComboBox.getValue()); // Replace with actual value from form field
         citation.setDLNumber(driverLicenseNumberTextField.getText());
         citation.setVIN(vehicleIdTextField.getText());
@@ -245,7 +265,7 @@ public class ModifyCitationController {
         String regex5 = "^[A-Za-z'-]+(?:\\s+[A-Za-z'-]+)*$"; // Name Name
 
         // Convert text fields to uppercase
-        //licensePlateNumberTextField.setText(licensePlateNumberTextField.getText().toUpperCase());
+        // licensePlateNumberTextField.setText(licensePlateNumberTextField.getText().toUpperCase());
 
         // Driver's License Validation
         if (driverLicenseNumberTextField.getText() == null || driverLicenseNumberTextField.getText().isEmpty()
@@ -257,13 +277,14 @@ public class ModifyCitationController {
             driverLicenseNumberErrorLabel.setVisible(false);
         }
         // License Plate Validation
-        // if (licensePlateNumberTextField.getText() == null || licensePlateNumberTextField.getText().isEmpty()
-        //         || !licensePlateNumberTextField.getText().matches(regex2)) {
-        //     licensePlateNumberErrorLabel.setText("*Invalid Input");
-        //     licensePlateNumberErrorLabel.setVisible(true);
-        //     isValid = false;
+        // if (licensePlateNumberTextField.getText() == null ||
+        // licensePlateNumberTextField.getText().isEmpty()
+        // || !licensePlateNumberTextField.getText().matches(regex2)) {
+        // licensePlateNumberErrorLabel.setText("*Invalid Input");
+        // licensePlateNumberErrorLabel.setVisible(true);
+        // isValid = false;
         // } else {
-        //     licensePlateNumberErrorLabel.setVisible(false);
+        // licensePlateNumberErrorLabel.setVisible(false);
 
         // }
 
@@ -307,7 +328,8 @@ public class ModifyCitationController {
         typeLabel.setVisible(!editable);
         driverLicenseNumberTextField.setStyle(editable ? defaultEntryStyle : uneditableEntryStyle);
         driverLicenseNumberTextField.setEditable(editable);
-        // licensePlateNumberTextField.setStyle(editable ? defaultEntryStyle : uneditableEntryStyle);
+        // licensePlateNumberTextField.setStyle(editable ? defaultEntryStyle :
+        // uneditableEntryStyle);
         // licensePlateNumberTextField.setEditable(editable);
         vehicleIdTextField.setStyle(editable ? defaultEntryStyle : uneditableEntryStyle);
         vehicleIdTextField.setEditable(editable);

@@ -1,7 +1,11 @@
 //Author: Isaiah Daiz
 package tcrs;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -74,6 +78,7 @@ public class TrafficSchoolController {
     private Button cancelButton;
 
     private Citation citation;
+    private Driver driver;
 
     private boolean added1 = false;
     private boolean added2 = false;
@@ -120,7 +125,7 @@ public class TrafficSchoolController {
     }
 
     @FXML
-    private void handleSubmitButton() {
+    private void handleSubmitButton() throws SQLException {
         boolean valid = true;
         // Validate inputs
         String regex = "^\\d+(\\.\\d{1,2})?$";
@@ -171,8 +176,7 @@ public class TrafficSchoolController {
                 // Build Traffic School Information as String
                 System.out.println(trafficSchoolString());
                 citation.setTrafficSchool(trafficSchoolString());
-                // Callback string
-                passStringToPreviousScene();
+                citation.updateCitation();
                 // get a reference to the stage
                 Stage stage = (Stage) SubmitButton.getScene().getWindow();
                 // close the stage
@@ -181,7 +185,7 @@ public class TrafficSchoolController {
         }
     }
 
-    public void initialize(Citation currCitation) {
+    public void initialize(int currCitationID, String currDriver) {
         // get default style for date picker
         defaultStyleDP = sessionDatePicker0.getStyle();
 
@@ -194,11 +198,37 @@ public class TrafficSchoolController {
         sessionErrorLabel2.setVisible(false);
 
         // Populate page with current citation values
-        citation = currCitation;
-        System.out.println(citation);
-        firstNameLabel.setText(" "); // replace with getting firstname from drvier class
-        lastNameLabel.setText(" "); // replace with getting lastname from driver class
-        dLNumberLabel.setText(citation.getDLNumber());
+        try {
+            citation = Citation.searchCitation(currCitationID);
+            driver = Driver.searchDriver(currDriver);
+            System.out.println(citation);
+            firstNameLabel.setText(driver.getFirstName()); // replace with getting firstname from drvier class
+            lastNameLabel.setText(driver.getLastName()); // replace with getting lastname from driver class
+            dLNumberLabel.setText(citation.getDLNumber());
+
+            // Sessions and notes
+            TrafficSchoolInfoExtractor extractor = new TrafficSchoolInfoExtractor(citation.getTrafficSchool());
+            List<TrafficSchoolInfoExtractor.SessionInfo> sessions = extractor.getSessions();
+            String additionalNotes = extractor.getAdditionalNotes();
+            if (extractor.getLength() > 0) {
+                sessionDatePicker0.setValue(sessions.get(0).getSessionDate());
+                sessionDurationTextField0.setText(Integer.toString(sessions.get(0).getSessionDuration()));
+            }
+            if (extractor.getLength() > 1) {
+                handleSessionAddButton1();
+                sessionDatePicker1.setValue(sessions.get(1).getSessionDate());
+                sessionDurationTextField1.setText(Integer.toString(sessions.get(1).getSessionDuration()));
+            }
+            if (extractor.getLength() > 2) {
+                handleSessionAddButton2();
+                sessionDatePicker2.setValue(sessions.get(2).getSessionDate());
+                sessionDurationTextField2.setText(Integer.toString(sessions.get(2).getSessionDuration()));
+            }
+            reportNotes.setText(additionalNotes);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -226,26 +256,12 @@ public class TrafficSchoolController {
         }
 
         // Additional notes
-        if (!reportNotes.getText().isEmpty()) {
+        if (reportNotes.getText() != null) {
             trafficSchoolString.append("\nAdditional Notes: ");
             trafficSchoolString.append(reportNotes.getText());
         }
 
         return trafficSchoolString.toString();
-    }
-
-    // String call back
-    private StringCallback callback;
-
-    public void setCallback(StringCallback callback) {
-        this.callback = callback;
-    }
-
-    private void passStringToPreviousScene() {
-        String data = trafficSchoolString();
-        if (callback != null) {
-            callback.onStringReceived(data);
-        }
     }
 
 }

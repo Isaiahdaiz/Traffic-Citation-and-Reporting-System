@@ -1,6 +1,7 @@
 package tcrs;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -69,6 +70,30 @@ public class User {
         this.status = status;
     }
 
+    public static User searchUser(String searchUsername) throws Exception {
+        String query = "SELECT * FROM Users WHERE Username = ?";
+        User user = null;
+
+        try (Connection conn = DatabaseUtils.getConnection()) {
+            PreparedStatement preparedStatement = null;
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, searchUsername);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                String username = resultSet.getString("Username");
+                String password = resultSet.getString("Password");
+                String type = resultSet.getString("Type");
+                String status = resultSet.getString("Status");
+
+                user = new User(username, password, type, status);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error searching user: " + e.getMessage());
+        }
+
+        return user;
+        
     //Save information in database
     public void saveUser() throws SQLException {
         try (Connection connection = DriverManager.getConnection(url, usernameServer, passwordServer)) {

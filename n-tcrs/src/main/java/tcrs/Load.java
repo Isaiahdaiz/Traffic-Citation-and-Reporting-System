@@ -1,6 +1,7 @@
 // Author: Isaiah Daiz
 package tcrs;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -34,7 +35,9 @@ public class Load {
     public void newCitation() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("NewCitation.fxml"));
         Parent root = loader.load();
+        NewCitationController controller = loader.getController();
         Stage stage = new Stage();
+        controller.initialize(AuthController.user.getUsername());
         stage.setScene(new Scene(root));
         stage.show();
     }
@@ -44,6 +47,18 @@ public class Load {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("NewDriver.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    // Modify Driver
+    public void modifyDriver(String dLNUmber, Stage currentStage) throws IOException {
+        previousScene = currentStage.getScene();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifyDriver.fxml"));
+        Parent root = loader.load();
+        ModifyDriverController controller = loader.getController();
+        Stage stage = new Stage();
+        controller.initialize(dLNUmber);
         stage.setScene(new Scene(root));
         stage.show();
     }
@@ -70,17 +85,11 @@ public class Load {
     }
 
     // Load Modify citation screen
-    public void trafficSchool(Citation citation) throws IOException {
+    public void trafficSchool(int citationID, String dlNumber) throws IOException, SQLException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("TrafficSchool.fxml"));
         Parent root = loader.load();
         TrafficSchoolController controller = loader.getController();
-        controller.initialize(citation);
-
-        controller.setCallback(data -> {
-            citation.setTrafficSchool(data);
-            System.out.println("Data received: " + data);
-        });
-
+        controller.initialize(citationID, dlNumber);
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
