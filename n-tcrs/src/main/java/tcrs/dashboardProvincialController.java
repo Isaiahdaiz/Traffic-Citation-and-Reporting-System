@@ -54,8 +54,8 @@ public class dashboardProvincialController {
     }
 
     @FXML
-    public void switchToReports() {
-        //TO DO
+    public void switchToReports() throws IOException{
+        App.setRoot("reportProvincial");
     }
 
     @FXML
