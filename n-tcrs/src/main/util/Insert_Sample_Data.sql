@@ -9,12 +9,12 @@ VALUES
     ('jim', 'password', 'provincial', 'active'),
     ('jack', 'password', 'provincial', 'inactive');
 
-INSERT INTO Vehicles (VIN, LicensePlateNumber, Make, Model, RegistrationStatus, StolenStatus, WarrantStatus, Notes) VALUES 
-('1GNSKAKC9FR288113', 'ABC123', 'Chevrolet', 'Tahoe', true, false, false, 'Red SUV'), 
-('1FMJU2A57CEF33227', 'XYZ789', 'Ford', 'Expedition', true, false, false, 'White SUV'), 
-('1N4AA6AP3HC387645', 'DEF456', 'Nissan', 'Maxima', true, false, false, 'Silver sedan'), 
-('2T2HK31U48C065630', 'GHI789', 'Lexus', 'RX', true, false, false, 'Blue SUV'), 
-('3FA6P0D92JR202122', 'JKL012', 'Ford', 'Fusion', true, false, false, 'Black sedan');
+INSERT INTO Vehicles (VIN, LicensePlateNumber, Year, Make, Model, Color, RegistrationStatus, StolenStatus, WarrantStatus, Notes) VALUES 
+('1GNSKAKC9FR288113', 'ABC123', 2013, 'Chevrolet', 'Tahoe', "red", true, false, false, 'Red SUV'), 
+('1FMJU2A57CEF33227', 'XYZ789', 2005, 'Ford', 'Expedition', "white", true, false, false, 'White SUV'), 
+('1N4AA6AP3HC387645', 'DEF456', 2010, 'Nissan', 'Maxima', "silver", true, false, false, 'Silver sedan'), 
+('2T2HK31U48C065630', 'GHI789', 2014, 'Lexus', 'RX', "blue", true, false, false, 'Blue SUV'), 
+('3FA6P0D92JR202122', 'JKL012', 2010, 'Ford', 'Fusion', " black", true, false, false, 'Black sedan');
 
 INSERT INTO Drivers (DLNumber, FirstName, LastName, DateOfBirth, LicenseStatus, WarrantStatus, DrivingRecord, Notes) VALUES 
 ('B12345678901234', 'John', 'Doe', '1980-01-01', 'Valid', false, 'Clean', 'No notes'), 
