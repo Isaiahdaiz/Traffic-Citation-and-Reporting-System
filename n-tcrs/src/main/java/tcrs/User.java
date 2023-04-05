@@ -6,6 +6,8 @@ public class User {
     private String type;
     private String status;
 
+    public boolean isValid;
+
     public User(String username, String password, String type, String status) {
         this.username = username;
         this.password = password;

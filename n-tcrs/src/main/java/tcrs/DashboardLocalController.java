@@ -12,10 +12,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
@@ -78,13 +75,18 @@ public class DashboardLocalController implements Initializable {
 
     @FXML
     private Button refreshButton;
+    @FXML
+    private Label welcomeTitle;
 
     @FXML
-    private void handleRefreshButton() throws SQLException {
+    private void handleRefreshButton() throws Exception {
         refreshTable();
     }
 
     public void initialize(URL location, ResourceBundle resources) {
+
+        welcomeTitle.setText(welcomeTitle.getText() + " " + AuthController.user.getUsername());
+
         // Combo Box
         itemTypeComboBox.getItems().addAll("Citation", "Driver", "Vehicle");
         itemTypeComboBox.setOnAction(event -> {
@@ -178,7 +180,7 @@ public class DashboardLocalController implements Initializable {
                         }
                     } catch (SQLException e) {
                         e.printStackTrace();
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
@@ -200,7 +202,7 @@ public class DashboardLocalController implements Initializable {
                         }
                     } catch (SQLException e) {
                         e.printStackTrace();
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
@@ -222,18 +224,18 @@ public class DashboardLocalController implements Initializable {
                         }
                     } catch (SQLException e) {
                         e.printStackTrace();
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
             });
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void refreshTable() throws SQLException {
+    private void refreshTable() throws Exception {
         // Clear current data in the tables
         citationTable.getItems().clear();
         driverTable.getItems().clear();

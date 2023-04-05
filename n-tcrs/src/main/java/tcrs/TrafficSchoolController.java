@@ -1,7 +1,6 @@
 //Author: Isaiah Daiz
 package tcrs;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 
 import javafx.fxml.FXML;

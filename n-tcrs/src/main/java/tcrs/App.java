@@ -20,11 +20,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        // Create a BorderPane layout and set the navbar as the top node
-        root.setTop(FXMLLoader.load(getClass().getResource("navLocal.fxml")));
-        root.setCenter(FXMLLoader.load(getClass().getResource("DashboardLocal.fxml")));
-        
-        scene = new Scene(root, 720, 480);
+        scene = new Scene(loadFXML("login"), 720, 480);
         stage.setScene(scene);
         stage.show();
     }
