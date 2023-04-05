@@ -30,6 +30,8 @@ public class AuthController {
                 App.setRoot("DashboardLocal");
             } else if (user.getType().toUpperCase().equals("PROVINCIAL")) {
                 App.setRoot("dashboardProvincial");
+            }else if (user.getType().toUpperCase().equals("ADMIN")) {
+                App.setRoot("dashboardAdmin");
             }
         } else {
             loginValidation.setTextFill(Color.RED);
