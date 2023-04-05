@@ -93,7 +93,7 @@ public class User {
         }
 
         return user;
-        
+    }
     //Save information in database
     public void saveUser() throws SQLException {
         try (Connection connection = DriverManager.getConnection(url, usernameServer, passwordServer)) {
