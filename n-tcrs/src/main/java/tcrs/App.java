@@ -25,6 +25,7 @@ public class App extends Application {
         stage.show();
     }
 
+    /* 
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
@@ -42,6 +43,10 @@ public class App extends Application {
         Parent root = loader.load();
         this.root.getChildren().clear();
         this.root.getChildren().add(root);
+    }
+    */
+    static void setRoot(String fxml) throws IOException {
+        scene.setRoot(loadFXML(fxml));
     }
 
     private static Parent loadFXML(String fxml) throws IOException {

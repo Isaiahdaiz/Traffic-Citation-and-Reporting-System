@@ -33,6 +33,7 @@ public class NavLocalController {
         // Add event handlers or other initialization code here
     }
 
+    /* 
     @FXML
     private void handleHomeButton() throws IOException {
         App.setCenter("DashboardLocal");
@@ -42,7 +43,7 @@ public class NavLocalController {
     private void handleSearchButton() throws IOException {
         App.setCenter("SearchAll");
     }
-
+    */
     @FXML
     private void handleReportsButton() {
         // Add code to handle the Reports button here
