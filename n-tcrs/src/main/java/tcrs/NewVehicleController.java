@@ -56,26 +56,6 @@ public class NewVehicleController {
     }
 
     @FXML
-    public void switchToHome() throws IOException {
-        App.setRoot("dashboardLocal");
-    }
-
-    @FXML 
-    public void switchToSearch() throws IOException {
-        App.setRoot("SearchAll");
-    }
-
-    @FXML
-    public void switchToReports() throws IOException {
-        App.setRoot("reportLocal");
-    }
-
-    @FXML
-    public void switchToLogout() throws IOException {
-        App.setRoot("login");
-    }
-
-    @FXML
     private void handleSubmitButton() throws SQLException {
         // Check if fields are correct
         if (!validSubmission()) {
