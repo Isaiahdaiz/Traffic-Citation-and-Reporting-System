@@ -81,11 +81,20 @@ public class ModifyVehicleController {
 
     private Vehicle vehicle;
     private String currVehicleID;
+    private boolean provincial = true;
 
     public void initialize(String currVIN) {
+        // assign defaults
         this.currVehicleID = currVIN;
         defaultEntryStyle = makeTextField.getStyle();
         uneditableEntryStyle = "-fx-background-color: transparent";
+
+        // hide modify button if user is provincial
+        provincial = AuthController.user.getType().toLowerCase().equals("provincial");
+        System.out.println(provincial);
+        if (provincial) {
+            modifyButton.setVisible(false);
+        }
 
         try {
             vehicle = Vehicle.searchVehicle(currVIN);

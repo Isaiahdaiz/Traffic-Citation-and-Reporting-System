@@ -81,15 +81,28 @@ public class ModifyDriverController {
 
     private Driver driver;
     private String currDLNumber;
+    private boolean provincial = true;
 
     public void initialize(String currDLNumber) {
+        // assign defaults
         this.currDLNumber = currDLNumber;
         defaultEntryStyle = firstNameTextField.getStyle();
         defaultStyleDP = dOBDatePicker.getStyle();
         uneditableEntryStyle = "-fx-background-color: transparent";
 
-        driverLicenseNumberTextField.setEditable(false); // should not be able to edit dl number, messes with foreign keys
+        // Start entry fields uneditable and remove background
+        setEditableAll(false);
+        driverLicenseNumberTextField.setEditable(false); // should not be able to edit dl number, messes with foreign
+                                                         // keys
         driverLicenseNumberTextField.setStyle(uneditableEntryStyle);
+
+        // hide modify button if user is provincial
+        provincial = AuthController.user.getType().toLowerCase().equals("provincial");
+        System.out.println(provincial);
+        if (provincial) {
+            modifyButton.setVisible(false);
+        }
+
         firstNameTextField.requestFocus();
 
         try {
@@ -124,9 +137,6 @@ public class ModifyDriverController {
                 warrantsNoRadioButton.setSelected(true);
             }
 
-            // Start entry fields uneditable and remove background
-            setEditableAll(false);
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -141,7 +151,6 @@ public class ModifyDriverController {
         });
     }
 
-    @FXML
     private void handleCancelButton() {
         initialize(currDLNumber);
     }
@@ -212,7 +221,6 @@ public class ModifyDriverController {
         }
 
         driver.setWarrantStatus(warrantsYesRadioButton.isSelected());
-        
 
         try {
             driver.updateDriver(); // Update the driver in the database
@@ -238,8 +246,9 @@ public class ModifyDriverController {
 
     // Set all entries uneditable
     private void setEditableAll(boolean editable) {
-        //driverLicenseNumberTextField.setStyle(editable ? defaultEntryStyle : uneditableEntryStyle);
-        //driverLicenseNumberTextField.setEditable(editable);
+        // driverLicenseNumberTextField.setStyle(editable ? defaultEntryStyle :
+        // uneditableEntryStyle);
+        // driverLicenseNumberTextField.setEditable(editable);
         firstNameTextField.setStyle(editable ? defaultEntryStyle : uneditableEntryStyle);
         firstNameTextField.setEditable(editable);
         lastNameTextField.setStyle(editable ? defaultEntryStyle : uneditableEntryStyle);
@@ -248,7 +257,7 @@ public class ModifyDriverController {
         drivingRecordTextArea.setEditable(editable);
         notesTextArea.setStyle(editable ? defaultEntryStyle : uneditableEntryStyle);
         notesTextArea.setEditable(editable);
-        
+
         // set radio buttons
         licenseActiveRadioButton.setDisable(!editable);
         licenseNotActiveRadioButton.setDisable(!editable);

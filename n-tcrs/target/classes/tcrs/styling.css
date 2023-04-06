@@ -31,4 +31,6 @@
 }
 .btn-search:hover {
     -fx-text-fill: Black;
+    -fx-font-size: 13px;
+        font-size: 13px;
 }
