@@ -21,7 +21,7 @@ public class dashboardProvincialController {
     @FXML private Button reportsButton;
     @FXML private Button logoutButton;
     @FXML private Label welcomeName;
-    @FXML private TextField citationTextField;
+    @FXML private TextField citationText;
     @FXML private TextField driverTextField;
     @FXML private Label invalidCitationText;
     @FXML private Label invalidDriver;
@@ -62,20 +62,20 @@ public class dashboardProvincialController {
     public void citationSearch(ActionEvent event) throws IOException , SQLException{
         // code to handle search by Citation ID
         String regex = "\\d{8}"; // ########
-        if (citationTextField.getText() == null || citationTextField.getText().isEmpty()
-                || !citationTextField.getText().matches(regex)) {
+        if (citationText.getText() == null || citationText.getText().isEmpty()
+                || !citationText.getText().matches(regex)) {
             invalidCitationText.setText("*Invalid Input");
             invalidCitationText.setVisible(true);
         } else {
             invalidCitationText.setVisible(false);
-            if (!Citation.citationIdExists(Integer.parseInt(citationTextField.getText()))) {
+            if (!Citation.citationIdExists(Integer.parseInt(citationText.getText()))) {
                 invalidCitationText.setText("*Citation does not exist");
                 invalidCitationText.setVisible(true);
                 System.out.println("Citation does not exist");
                 return;
             }
             try {
-                int citationIdInt = Integer.parseInt(citationTextField.getText());
+                int citationIdInt = Integer.parseInt(citationText.getText());
                 Citation citation = Citation.searchCitation(citationIdInt);
                 if (citation != null) {
                     System.out.println("Citation found \n" + citation.toString());
