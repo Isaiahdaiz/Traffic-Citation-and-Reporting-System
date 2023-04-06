@@ -30,4 +30,11 @@ public class modifyUserController {
     public void saveUserInfo() {
 
     }
+
+    private User currUser;
+
+    public void initialize(String currUsername) throws Exception {
+        currUser = User.searchUser(currUsername);
+        System.out.println(currUser.toString());
+    }
 }
