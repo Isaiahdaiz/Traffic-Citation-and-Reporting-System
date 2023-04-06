@@ -43,6 +43,26 @@ public class SearchAllController {
     }
 
     @FXML
+    public void switchToHome() throws IOException {
+        App.setRoot("dashboardLocal");
+    }
+
+    @FXML 
+    public void switchToSearch() throws IOException {
+        App.setRoot("SearchAll");
+    }
+
+    @FXML
+    public void switchToReports() throws IOException {
+        App.setRoot("reportLocal");
+    }
+
+    @FXML
+    public void switchToLogout() throws IOException {
+        App.setRoot("login");
+    }
+    
+    @FXML
     private void handleCitaionIDSearchButton() throws IOException, SQLException {
         // code to handle search by Citation ID
         String regex = "\\d{8}"; // ########

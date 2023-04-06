@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
@@ -13,8 +14,35 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.BorderPane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tcrs.DashboardLocalController">
+<BorderPane style="-fx-background-color: f5f5f5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tcrs.DashboardLocalController">
+<top>
+      <HBox fillHeight="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #3333ff;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #3333ff; -fx-font-weight: 700;" text="Traffic and Reporting System" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+               <font>
+                  <Font name="Helvetica" size="17.0" />
+               </font>
+            </Label>
+            <ButtonBar prefHeight="40.0" prefWidth="200.0">
+              <buttons>
+                <Button mnemonicParsing="false" onAction="#switchToHome" prefHeight="40.0" prefWidth="100.0" styleClass="nav-btn-current" stylesheets="@styling.css" text="Home">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#switchToSearch" prefHeight="38.0" prefWidth="100.0" styleClass="nav-btn-class" stylesheets="@styling.css" text="Search" />
+                  <Button mnemonicParsing="false" onAction="#switchToReports" prefHeight="38.0" prefWidth="100.0" styleClass="nav-btn-class" stylesheets="@styling.css" text="Reports" />
+                  <Button mnemonicParsing="false" onAction="#switchToLogout" prefHeight="38.0" prefWidth="60.0" styleClass="nav-btn-class" stylesheets="@styling.css" text="Logout" />
+              </buttons>
+               <HBox.margin>
+                  <Insets left="70.0" />
+               </HBox.margin>
+            </ButtonBar>
+         </children>
+      </HBox>
+   </top>
 <center>
 <VBox alignment="TOP_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="430.0" prefWidth="720.0" spacing="10.0">
    <ComboBox fx:id="itemTypeComboBox" prefWidth="150.0" promptText="Create New" />

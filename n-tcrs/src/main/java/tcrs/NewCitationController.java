@@ -102,6 +102,23 @@ public class NewCitationController {
     }
 
     @FXML
+    public void switchToHome() throws IOException {
+        App.setRoot("DashboardLocal");
+    }
+
+    @FXML void switchToReports() throws IOException {
+        App.setRoot("reportLocal");
+    }
+
+    @FXML void switchToSearch() throws IOException {
+        App.setRoot("SearchAll");
+    }
+
+    @FXML void switchToLogout() throws IOException {
+        App.setRoot("login");
+    }
+    
+    @FXML
     private void handleBookButton() throws IOException, SQLException {
         // driverLicenseNumberErrorLabel.setVisible(false);
         // driverLicenseNumberErrorLabel.setText("*Invalid Input");
