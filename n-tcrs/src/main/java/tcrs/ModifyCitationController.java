@@ -97,12 +97,24 @@ public class ModifyCitationController {
     private Citation citation;
     private int currCitationID;
     private boolean comboBoxAdded = false;
+    private boolean provincial = true;
 
     public void initialize(int currCitationID) {
+        // assign defaults
         this.currCitationID = currCitationID;
         defaultEntryStyle = notesTextArea.getStyle();
         uneditableEntryStyle = "-fx-background-color: transparent";
 
+        // Start entry fields uneditable and remove background
+        setEditableAll(false);
+
+        // hide modify button if user is provincial
+        provincial = AuthController.user.getType().toLowerCase().equals("provincial");
+        System.out.println(provincial);
+        if (provincial) {
+            modifyButton.setVisible(false);
+        }
+        
         notesTextArea.requestFocus();
         // get default textfield style to return to
         if (!comboBoxAdded)
@@ -110,7 +122,7 @@ public class ModifyCitationController {
         comboBoxAdded = true;
         // hide/show traffic school section
         typeComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.equals("Moving Vehicle Violation")) {
+            if (newValue.equals("Moving Vehicle Violation") && !provincial) {
                 trafficSchoolLabel.setVisible(true);
                 bookButton.setVisible(true);
             } else {
@@ -134,8 +146,7 @@ public class ModifyCitationController {
             officerTextArea.setText(citation.getOfficer());
             notesTextArea.setText(citation.getNotes());
 
-            // Start entry fields uneditable and remove background
-            setEditableAll(false);
+            
 
         } catch (SQLException e) {
             e.printStackTrace();
