@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import java.io.IOException;
 
 import java.sql.SQLException;
 
@@ -52,6 +53,26 @@ public class NewDriverController {
                 e.printStackTrace();
             }
         });
+    }
+
+    @FXML
+    public void switchToHome() throws IOException {
+        App.setRoot("dashboardLocal");
+    }
+
+    @FXML 
+    public void switchToSearch() throws IOException {
+        App.setRoot("SearchAll");
+    }
+
+    @FXML
+    public void switchToReports() throws IOException {
+        App.setRoot("reportLocal");
+    }
+
+    @FXML
+    public void switchToLogout() throws IOException {
+        App.setRoot("login");
     }
 
     @FXML

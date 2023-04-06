@@ -10,6 +10,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import java.io.IOException;
 
 import java.sql.SQLException;
 import java.util.Optional;
@@ -130,6 +131,26 @@ public class ModifyVehicleController {
                 e.printStackTrace();
             }
         });
+    }
+
+    @FXML
+    public void switchToHome() throws IOException {
+        App.setRoot("dashboardLocal");
+    }
+
+    @FXML 
+    public void switchToSearch() throws IOException {
+        App.setRoot("SearchAll");
+    }
+
+    @FXML
+    public void switchToReports() throws IOException {
+        App.setRoot("reportLocal");
+    }
+
+    @FXML
+    public void switchToLogout() throws IOException {
+        App.setRoot("login");
     }
 
     @FXML

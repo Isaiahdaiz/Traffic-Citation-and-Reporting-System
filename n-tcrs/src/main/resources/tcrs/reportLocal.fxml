@@ -16,42 +16,27 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="720.0" style="-fx-background-color: f5f5f5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tcrs.reportLocalController">
    <top>
-      <HBox fillHeight="false" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox fillHeight="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #3333ff;" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #3333ff; -fx-font-weight: 700;" text="Traffic and Reporting System" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
                <font>
                   <Font name="Helvetica" size="17.0" />
                </font>
             </Label>
-            <ButtonBar buttonMinWidth="80.0" prefHeight="40.0" prefWidth="430.0" style="-fx-background-color: #3333ff;">
+            <ButtonBar prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                  <Button mnemonicParsing="false" onAction="#switchToDashboard" styleClass="nav-btn-class" stylesheets="@styling.css" text="Home">
+                <Button mnemonicParsing="false" onAction="#switchToDashboard" prefHeight="40.0" prefWidth="100.0" styleClass="nav-btn-current" stylesheets="@styling.css" text="Home">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToSearch" prefHeight="38.0" prefWidth="100.0" styleClass="nav-btn-class" stylesheets="@styling.css" text="Search" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Helvetica" size="13.0" />
-                     </font>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#switchToReports" prefHeight="40.0" prefWidth="100.0" styleClass="nav-btn-current" stylesheets="@styling.css" text="Reports" textFill="WHITE">
-                     <font>
-                        <Font name="Helvetica" size="13.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#switchToLogout" prefHeight="38.0" prefWidth="60.0" styleClass="nav-btn-class" stylesheets="@styling.css" text="Logout" textFill="WHITE">
-                     <font>
-                        <Font name="Helvetica" size="13.0" />
-                     </font>
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </Button>
+                  <Button mnemonicParsing="false" onAction="#switchToSearch" prefHeight="38.0" prefWidth="100.0" styleClass="nav-btn-class" stylesheets="@styling.css" text="Search" />
+                  <Button mnemonicParsing="false" onAction="#switchToReports" prefHeight="38.0" prefWidth="100.0" styleClass="nav-btn-class" stylesheets="@styling.css" text="Reports" />
+                  <Button mnemonicParsing="false" onAction="#switchToLogout" prefHeight="38.0" prefWidth="60.0" styleClass="nav-btn-class" stylesheets="@styling.css" text="Logout" />
               </buttons>
+               <HBox.margin>
+                  <Insets left="70.0" />
+               </HBox.margin>
             </ButtonBar>
          </children>
       </HBox>

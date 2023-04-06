@@ -281,5 +281,23 @@ public class DashboardLocalController implements Initializable {
         citationTable.getItems().addAll(citations);
         driverTable.getItems().addAll(drivers);
         vehicleTable.getItems().addAll(vehicles);
+
+    }
+
+    @FXML
+    public void switchToHome() throws IOException {
+        App.setRoot("DashboardLocal");
+    }
+
+    @FXML void switchToReports() throws IOException {
+        App.setRoot("reportLocal");
+    }
+
+    @FXML void switchToSearch() throws IOException {
+        App.setRoot("SearchAll");
+    }
+
+    @FXML void switchToLogout() throws IOException {
+        App.setRoot("login");
     }
 }
