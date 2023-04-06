@@ -43,7 +43,10 @@ public class reportProvincialController {
     }
 
     //Submit button clicked - generate report
-    @FXML void switchToDashboard() throws IOException {
+    @FXML void switchToDashboard() throws Exception {
+
+        reportLocalController report = new reportLocalController();
+        report.getCitationReport(String.valueOf(startDate.getValue()),String.valueOf(endDate.getValue()));
         //TO DO generate report
         App.setRoot("dashboardProvincial");
     }
