@@ -17,7 +17,7 @@ public class dashboardAdminController {
 
     @FXML
     public void switchToCreateUser() throws IOException {
-        App.setRoot("createUser");
+        App.setRoot("CreateUser");
     }
 
     @FXML

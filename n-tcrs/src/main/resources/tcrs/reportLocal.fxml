@@ -25,6 +25,11 @@
             </Label>
             <ButtonBar buttonMinWidth="80.0" prefHeight="40.0" prefWidth="430.0" style="-fx-background-color: #3333ff;">
               <buttons>
+                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="60.0" text="Local" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                       <Font size="13.0" />
+                    </font>
+                 </Label>
                   <Button mnemonicParsing="false" onAction="#switchToDashboard" styleClass="nav-btn-class" stylesheets="@styling.css" text="Home">
                      <font>
                         <Font size="13.0" />

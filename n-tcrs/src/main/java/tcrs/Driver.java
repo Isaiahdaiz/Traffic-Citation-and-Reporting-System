@@ -19,7 +19,7 @@ public class Driver {
     // SQL Server and Credentials
     private static String url = "jdbc:mysql://localhost:3306/project?useSSL=false";
     private static String username = "root";
-    private static String password = "test";
+    private static String password = "project";
 
     // Constructors
     public Driver() {

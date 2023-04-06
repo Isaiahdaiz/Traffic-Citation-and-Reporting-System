@@ -20,7 +20,7 @@ public class User {
      // SQL Server and Credentials
      private static String url = "jdbc:mysql://localhost:3306/project";
      private static String usernameServer = "root";
-     private static String passwordServer = "test";
+     private static String passwordServer = "project";
 
 
 
@@ -93,7 +93,7 @@ public class User {
         }
 
         return user;
-        
+    }
     //Save information in database
     public void saveUser() throws SQLException {
         try (Connection connection = DriverManager.getConnection(url, usernameServer, passwordServer)) {

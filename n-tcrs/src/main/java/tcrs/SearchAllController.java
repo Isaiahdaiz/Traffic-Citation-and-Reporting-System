@@ -137,4 +137,19 @@ public class SearchAllController {
             }
         }
     }
+
+    @FXML
+    public void switchToLogout() throws IOException {
+        App.setRoot("login");
+    }
+
+    @FXML
+    public void switchToReports() throws IOException {
+        App.setRoot("reportLocal");
+    }
+
+    @FXML
+    public void switchToSearch() throws IOException {
+        App.setRoot("searchLocal");
+    }
 }
