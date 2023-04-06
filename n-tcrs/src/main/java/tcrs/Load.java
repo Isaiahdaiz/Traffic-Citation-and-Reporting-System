@@ -1,5 +1,6 @@
 // Author: Isaiah Daiz
 package tcrs;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -12,17 +13,18 @@ public class Load {
     private Scene previousScene;
     // Load Modify citation screen
     // public void modifyCitation(int citationID) throws IOException {
-    //     FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifyCitation.fxml"));
-    //     Parent root = loader.load();
-    //     ModifyCitationController controller = loader.getController();
-    //     controller.initialize(citationID);
-    //     Stage stage = new Stage();
-    //     stage.setScene(new Scene(root));
-    //     stage.show();
+    // FXMLLoader loader = new
+    // FXMLLoader(getClass().getResource("ModifyCitation.fxml"));
+    // Parent root = loader.load();
+    // ModifyCitationController controller = loader.getController();
+    // controller.initialize(citationID);
+    // Stage stage = new Stage();
+    // stage.setScene(new Scene(root));
+    // stage.show();
     // }
 
     public void modifyCitation(int citationID, Stage currentStage) throws IOException {
-        //previousScene = currentStage.getScene();
+        // previousScene = currentStage.getScene();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifyCitation.fxml"));
         Parent root = loader.load();
         ModifyCitationController controller = loader.getController();
@@ -31,6 +33,7 @@ public class Load {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
     // Load New Citation
     public void newCitation() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("NewCitation.fxml"));
@@ -96,11 +99,22 @@ public class Load {
         stage.show();
     }
 
-     // Method to switch back to the previous scene
-     public void goBack(Stage currentStage) {
+    // Modify Vehicle
+    public void modifyUser(String username, Stage currentStage) throws Exception {
+        previousScene = currentStage.getScene();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifyUser.fxml"));
+        Parent root = loader.load();
+        modifyUserController controller = loader.getController();
+        Stage stage = new Stage();
+        controller.initialize(username);
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    // Method to switch back to the previous scene
+    public void goBack(Stage currentStage) {
         if (previousScene != null) {
             currentStage.setScene(previousScene);
         }
     }
 }
-

@@ -151,6 +151,7 @@ public class ModifyDriverController {
         });
     }
 
+    @FXML
     private void handleCancelButton() {
         initialize(currDLNumber);
     }
